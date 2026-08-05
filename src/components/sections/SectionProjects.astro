@@ -1,0 +1,114 @@
+---
+// Section 04: Projects — Learning Through Projects
+import { projects } from '../../data/projects';
+---
+
+<section 
+  id="projects" 
+  class="relative py-24 sm:py-32 lg:py-40 px-6 sm:px-10 lg:px-12 border-b border-brand-border/60 bg-brand-black"
+>
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Chapter Header -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-16 border-b border-brand-border/40">
+      <div class="lg:col-span-4 font-mono text-xs text-neutral-400 space-y-1">
+        <span class="block tracking-widest uppercase text-[11px] font-medium text-neutral-400">Chapter 04</span>
+        <h2 class="text-white text-base font-medium font-sans">Learning Through Projects</h2>
+      </div>
+
+      <div class="lg:col-span-8 space-y-4">
+        <p class="font-serif italic text-3xl sm:text-4xl lg:text-5xl text-white leading-[1.1]">
+          Projects are not portfolio trophies.<br />
+          They are rigorous learning journeys.
+        </p>
+        <p class="text-sm font-mono text-neutral-400 uppercase tracking-widest">
+          Every case study explores: What was observed &bull; What existed &bull; What changed &bull; What was learned
+        </p>
+      </div>
+    </div>
+
+    <!-- Projects Exhibition Catalog Grid -->
+    <div class="space-y-24 pt-16">
+      {projects.map((project, index) => (
+        <article class="group border-b border-brand-border/60 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          
+          <!-- Left: Exhibition Metadata & Photography -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="flex items-center justify-between font-mono text-xs text-neutral-400">
+              <span>Catalog N° 0{index + 1}</span>
+              <span class="uppercase tracking-widest">{project.category} &bull; {project.year}</span>
+            </div>
+
+            <!-- Image Container -->
+            <a href={`/projects/${project.slug}`} class="block overflow-hidden border border-brand-border/80 rounded-sm">
+              <img 
+                src={project.image} 
+                alt={project.title}
+                class="w-full aspect-[16/10] object-cover grayscale contrast-110 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
+                loading="lazy"
+              />
+            </a>
+
+            <div class="font-mono text-xs text-neutral-400 flex flex-wrap gap-2 pt-2">
+              {project.deliverables.map((d) => (
+                <span class="px-2.5 py-1 bg-brand-surface border border-brand-border/60 rounded-xs">
+                  {d}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right: Four Core Case Questions (Editorial Monograph Layout) -->
+          <div class="lg:col-span-6 space-y-8">
+            <div>
+              <span class="font-mono text-xs uppercase tracking-widest text-neutral-400">{project.client}</span>
+              <h3 class="font-serif italic text-3xl sm:text-4xl text-white mt-1 group-hover:text-neutral-300 transition-colors">
+                <a href={`/projects/${project.slug}`}>{project.title}</a>
+              </h3>
+              <p class="font-sans text-neutral-300 text-base mt-2 font-light">
+                {project.subtitle}
+              </p>
+            </div>
+
+            <!-- The 4 Observation Pillars -->
+            <div class="space-y-6 text-sm font-sans font-light border-t border-brand-border/40 pt-6">
+              <div>
+                <span class="font-mono text-[11px] text-white uppercase tracking-widest block mb-1">01. What Did We Observe?</span>
+                <p class="text-neutral-400 leading-relaxed">{project.observation}</p>
+              </div>
+
+              <div>
+                <span class="font-mono text-[11px] text-white uppercase tracking-widest block mb-1">02. What Problem Existed?</span>
+                <p class="text-neutral-400 leading-relaxed">{project.problem}</p>
+              </div>
+
+              <div>
+                <span class="font-mono text-[11px] text-white uppercase tracking-widest block mb-1">03. What Changed?</span>
+                <p class="text-neutral-400 leading-relaxed">{project.transformation}</p>
+              </div>
+
+              <div>
+                <span class="font-mono text-[11px] text-white uppercase tracking-widest block mb-1">04. What Did We Learn?</span>
+                <p class="text-neutral-300 italic font-serif text-base leading-relaxed">{project.learnings}</p>
+              </div>
+            </div>
+
+            <!-- Deep Dive Monograph Link -->
+            <div class="pt-4">
+              <a 
+                href={`/projects/${project.slug}`}
+                class="inline-flex items-center space-x-2 font-mono text-xs uppercase tracking-widest text-white border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors pb-1"
+              >
+                <span>Read Complete Project Monograph</span>
+                <span>→</span>
+              </a>
+            </div>
+
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

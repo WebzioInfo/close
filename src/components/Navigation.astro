@@ -1,0 +1,97 @@
+---
+// Navigation.astro - Quiet, museum-grade top bar & chapter index
+const navLinks = [
+  { number: '01', label: 'Come', href: '/#come' },
+  { number: '02', label: 'Philosophy', href: '/#philosophy' },
+  { number: '03', label: 'Practice', href: '/#practice' },
+  { number: '04', label: 'Projects', href: '/#projects' },
+  { number: '05', label: 'Notes', href: '/#notes' },
+  { number: '06', label: 'Office', href: '/#office' },
+];
+---
+
+<header class="sticky top-0 z-40 w-full bg-brand-black/90 backdrop-blur-md border-b border-brand-border/60 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 h-20 flex items-center justify-between">
+    
+    <!-- Brand Mark -->
+    <a href="/" class="group flex items-center gap-3 focus:outline-none" aria-label="Close Communications Home">
+      <span class="w-2.5 h-2.5 rounded-full bg-white transition-transform duration-500 group-hover:scale-125"></span>
+      <div class="flex flex-col">
+        <span class="font-serif italic text-xl tracking-tight text-white leading-none">Close</span>
+        <span class="font-mono text-[10px] tracking-[0.25em] text-neutral-400 uppercase mt-0.5">Communications</span>
+      </div>
+    </a>
+
+    <!-- Desktop Chapter Index -->
+    <nav class="hidden lg:flex items-center space-x-8" aria-label="Main Navigation">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="group flex items-center space-x-1.5 text-xs text-neutral-400 hover:text-white transition-colors duration-300 py-1"
+        >
+          <span class="font-mono text-[10px] text-neutral-600 group-hover:text-neutral-300 transition-colors">
+            {link.number}
+          </span>
+          <span class="tracking-wide uppercase font-medium">
+            {link.label}
+          </span>
+        </a>
+      ))}
+    </nav>
+
+    <!-- Studio Status Indicator -->
+    <div class="hidden sm:flex items-center space-x-3 text-xs font-mono text-neutral-400 border-l border-brand-border pl-6">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80 animate-pulse"></span>
+      <span class="tracking-wider uppercase text-[11px]">Calicut &bull; IST</span>
+    </div>
+
+    <!-- Mobile Navigation Menu Toggle Button -->
+    <button 
+      id="mobile-menu-btn"
+      class="lg:hidden text-xs font-mono uppercase tracking-widest text-neutral-300 hover:text-white px-3 py-1.5 border border-brand-border rounded"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
+      Index
+    </button>
+
+  </div>
+
+  <!-- Mobile Drawer Dropdown -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-brand-black/95 border-b border-brand-border px-6 py-6 space-y-4">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="mobile-nav-item flex items-center justify-between text-sm py-2 text-neutral-300 hover:text-white border-b border-brand-border/40"
+      >
+        <span class="font-serif italic text-lg">{link.label}</span>
+        <span class="font-mono text-xs text-neutral-500">{link.number}</span>
+      </a>
+    ))}
+  </div>
+</header>
+
+<script>
+  const setupMobileMenu = () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', (!isExpanded).toString());
+      menu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on item click
+    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  };
+
+  document.addEventListener('astro:page-load', setupMobileMenu);
+  document.addEventListener('DOMContentLoaded', setupMobileMenu);
+</script>

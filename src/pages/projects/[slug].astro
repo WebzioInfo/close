@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects, type Project } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<Layout 
+  title={`${project.title} — Monograph | Close Communications`}
+  description={project.summary}
+  image={project.image}
+>
+  <article class="min-h-screen py-16 sm:py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <!-- Top Breadcrumb & Return -->
+    <div class="flex items-center justify-between font-mono text-xs text-neutral-400 border-b border-brand-border/60 pb-6">
+      <a href="/#projects" class="inline-flex items-center space-x-2 text-white hover:text-neutral-300 transition-colors uppercase tracking-widest">
+        <span>← Return to Chapter 04 Projects</span>
+      </a>
+      <span class="uppercase tracking-widest">{project.category} &bull; {project.year}</span>
+    </div>
+
+    <!-- Project Title Header -->
+    <div class="space-y-6 max-w-4xl">
+      <span class="font-mono text-xs uppercase tracking-widest text-neutral-400">Project Case Monograph</span>
+      <h1 class="font-serif italic text-4xl sm:text-6xl lg:text-7xl text-white leading-tight">
+        {project.title}
+      </h1>
+      <p class="font-sans font-light text-xl sm:text-2xl text-neutral-300 leading-relaxed">
+        {project.subtitle}
+      </p>
+    </div>
+
+    <!-- Hero Photography Frame -->
+    <div class="relative aspect-[21/9] w-full border border-brand-border rounded-sm overflow-hidden bg-brand-surface">
+      <img 
+        src={project.image} 
+        alt={project.title} 
+        class="w-full h-full object-cover grayscale contrast-110"
+      />
+    </div>
+
+    <!-- Deliverables & Client Summary Bar -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-y border-brand-border/60 font-mono text-xs">
+      <div>
+        <span class="text-neutral-500 uppercase tracking-widest text-[10px] block mb-1">Partner & Client</span>
+        <span class="text-white font-medium text-sm">{project.client}</span>
+      </div>
+      <div>
+        <span class="text-neutral-500 uppercase tracking-widest text-[10px] block mb-1">Practice Disciplines</span>
+        <div class="flex flex-wrap gap-1 text-neutral-300">
+          {project.deliverables.join(' • ')}
+        </div>
+      </div>
+      <div>
+        <span class="text-neutral-500 uppercase tracking-widest text-[10px] block mb-1">Documented Year</span>
+        <span class="text-white font-medium text-sm">{project.year}</span>
+      </div>
+    </div>
+
+    <!-- The 4 Observation Pillars Detailed Narrative -->
+    <div class="max-w-4xl mx-auto space-y-16 pt-8 font-sans font-light text-neutral-200 text-lg leading-relaxed">
+      
+      <!-- Observation -->
+      <section class="space-y-4 border-l-2 border-white/40 pl-6 sm:pl-8">
+        <span class="font-mono text-xs uppercase tracking-widest text-white font-semibold">01. What Did We Observe?</span>
+        <h2 class="font-serif italic text-3xl text-white">Initial Field Observation</h2>
+        <p class="text-neutral-300 font-light">{project.observation}</p>
+      </section>
+
+      <!-- Problem -->
+      <section class="space-y-4 border-l-2 border-white/40 pl-6 sm:pl-8">
+        <span class="font-mono text-xs uppercase tracking-widest text-white font-semibold">02. What Problem Existed?</span>
+        <h2 class="font-serif italic text-3xl text-white">The Core Friction</h2>
+        <p class="text-neutral-300 font-light">{project.problem}</p>
+      </section>
+
+      <!-- Transformation -->
+      <section class="space-y-4 border-l-2 border-white/40 pl-6 sm:pl-8">
+        <span class="font-mono text-xs uppercase tracking-widest text-white font-semibold">03. What Changed?</span>
+        <h2 class="font-serif italic text-3xl text-white">The Practice Transformation</h2>
+        <p class="text-neutral-300 font-light">{project.transformation}</p>
+      </section>
+
+      <!-- Learnings -->
+      <section class="space-y-4 border-l-2 border-white/40 pl-6 sm:pl-8">
+        <span class="font-mono text-xs uppercase tracking-widest text-white font-semibold">04. What Did We Learn?</span>
+        <h2 class="font-serif italic text-3xl text-white">Enduring Practice Insights</h2>
+        <p class="text-white italic font-serif text-xl sm:text-2xl leading-relaxed bg-brand-surface p-6 border border-brand-border rounded-sm">
+          "{project.learnings}"
+        </p>
+      </section>
+
+      {project.quote && (
+        <blockquote class="p-8 border-y border-brand-border/80 my-12 space-y-4">
+          <p class="font-serif italic text-2xl text-white leading-relaxed">
+            "{project.quote.text}"
+          </p>
+          <cite class="block font-mono text-xs text-neutral-400 not-italic uppercase tracking-widest">
+            — {project.quote.author}
+          </cite>
+        </blockquote>
+      )}
+
+    </div>
+
+    <!-- Bottom Navigation Footer -->
+    <div class="pt-16 border-t border-brand-border/60 flex flex-col sm:flex-row items-center justify-between font-mono text-xs gap-4">
+      <a href="/#projects" class="text-neutral-400 hover:text-white uppercase tracking-widest">
+        ← Back to Projects Catalog
+      </a>
+      <a href="/#office" class="text-white hover:text-neutral-300 uppercase tracking-widest">
+        Discuss a similar project →
+      </a>
+    </div>
+
+  </article>
+</Layout>

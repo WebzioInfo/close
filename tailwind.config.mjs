@@ -5,41 +5,46 @@ export default {
     extend: {
       colors: {
         brand: {
-          black: '#000000',
-          white: '#FFFFFF',
+          black: '#080808',
+          surface: '#0F0F0F',
+          border: '#1E1E1E',
           muted: '#8E8E93',
-          darkMuted: '#1C1C1E',
+          subtle: '#3A3A3C',
+          light: '#F4F4F5',
+          white: '#FFFFFF',
         }
       },
       fontFamily: {
-        display: ['Syncopate', 'Syne', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'Space Grotesk', 'system-ui', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       letterSpacing: {
-        'tightest': '-0.05em',
-        'super-wide': '0.3em',
-        'ultra-wide': '0.4em',
+        'tightest': '-0.04em',
+        'tighter': '-0.02em',
+        'widest-editorial': '0.25em',
+        'super-wide': '0.35em',
+      },
+      lineHeight: {
+        'editorial': '1.7',
+        'tight-heading': '1.05',
       },
       animation: {
-        'fade-hero': 'fadeHero 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'fade-subtle': 'fadeSubtle 700ms cubic-bezier(0.16, 1, 0.3, 1) 150ms forwards',
-        'badge-fade': 'badgeFade 500ms cubic-bezier(0.16, 1, 0.3, 1) 100ms forwards',
+        'fade-in': 'fadeIn 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-up': 'fadeUp 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
       },
       keyframes: {
-        fadeHero: {
-          '0%': { opacity: '0', transform: 'translateY(8px)' },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        fadeSubtle: {
-          '0%': { opacity: '0', transform: 'translateY(4px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        badgeFade: {
-          '0%': { opacity: '0', transform: 'scale(0.96)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
-        }
       }
     },
   },
   plugins: [],
 }
+

@@ -1,0 +1,107 @@
+---
+// Section 03: Where Learning Becomes Practice
+// Natural storytelling around practice disciplines without service cards or pricing grids.
+
+const disciplines = [
+  {
+    number: '01',
+    title: 'Brand Strategy & Observation',
+    description: 'We begin by spending time in your studio, factory, or archive. We observe customer interactions, uncover historic context, and define clear positioning before drawing a single line.'
+  },
+  {
+    number: '02',
+    title: 'Creative Direction & Narrative',
+    description: 'Developing cohesive editorial rules for visual imagery, spatial tone, video documentaries, and brand voice so every touchpoint feels quietly synchronized.'
+  },
+  {
+    number: '03',
+    title: 'Identity Systems & Monographs',
+    description: 'Building timeless typographic architectures, custom emblems, grid systems, and tactile brand guidelines that age with dignity across decades.'
+  },
+  {
+    number: '04',
+    title: 'Positioning & Communication Strategy',
+    description: 'Replacing marketing buzzwords with clear, articulate human language. We craft editorial messaging, press communications, and product nomenclature.'
+  },
+  {
+    number: '05',
+    title: 'Editorial & Book Design',
+    description: 'Designing physical journals, monograph books, exhibition catalogs, and digital archives that visitors want to keep on their bookshelves.'
+  },
+  {
+    number: '06',
+    title: 'Strategic Consultation & Guidance',
+    description: 'Acting as a quiet sounding board for founders, creative leaders, and agency heads navigating brand transitions, mergers, or repositioning.'
+  }
+];
+---
+
+<section 
+  id="practice" 
+  class="relative py-24 sm:py-32 lg:py-40 px-6 sm:px-10 lg:px-12 border-b border-brand-border/60 bg-brand-surface/40"
+>
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Chapter Header -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-16 border-b border-brand-border/40">
+      <div class="lg:col-span-4 font-mono text-xs text-neutral-400 space-y-1">
+        <span class="block tracking-widest uppercase text-[11px] font-medium text-neutral-400">Chapter 03</span>
+        <h2 class="text-white text-base font-medium font-sans">Where Learning Becomes Practice</h2>
+      </div>
+
+      <div class="lg:col-span-8">
+        <p class="font-serif italic text-3xl sm:text-4xl lg:text-5xl text-white leading-[1.1]">
+          We don’t offer services off a menu.<br />
+          We apply thoughtful practice to complex challenges.
+        </p>
+      </div>
+    </div>
+
+    <!-- Practice Introduction Essay -->
+    <div class="py-12 max-w-4xl space-y-6 font-sans font-light text-neutral-300 text-lg sm:text-xl leading-relaxed">
+      <p>
+        Close works with founders, independent studios, regional cultural forums, and global creative agencies who value quiet clarity over loud disruption.
+      </p>
+      <p class="text-base text-neutral-400">
+        Our practice unfolds across six core disciplines. Rather than executing disconnected deliverables, we treat these areas as an interconnected circle of observation and craft.
+      </p>
+    </div>
+
+    <!-- Practice Disciplines Grid (Editorial Monograph Style, No SaaS Cards) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 pt-8">
+      {disciplines.map((item) => (
+        <div class="group border-t border-brand-border/80 pt-6 space-y-4">
+          <div class="flex items-center justify-between font-mono text-xs text-neutral-400">
+            <span class="text-white font-medium">{item.number}</span>
+            <span class="tracking-widest uppercase text-[10px]">Practice Discipline</span>
+          </div>
+
+          <h3 class="font-serif italic text-2xl text-white group-hover:text-neutral-300 transition-colors">
+            {item.title}
+          </h3>
+
+          <p class="text-sm text-neutral-400 font-light leading-relaxed">
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Quiet Note on Engagement -->
+    <div class="mt-20 p-8 border border-brand-border/80 bg-brand-black/60 rounded-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="space-y-1">
+        <h4 class="font-serif italic text-xl text-white">How we engage with partners</h4>
+        <p class="text-xs font-mono text-neutral-400">
+          We take on only 4 to 6 core practice partnerships each year to preserve depth of observation.
+        </p>
+      </div>
+      <a 
+        href="#office" 
+        class="font-mono text-xs uppercase tracking-widest px-5 py-3 border border-brand-border hover:border-white text-white transition-colors"
+      >
+        Initiate a Conversation
+      </a>
+    </div>
+
+  </div>
+</section>

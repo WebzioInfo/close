@@ -1,10 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import LogoBadge from '../components/LogoBadge.astro';
-import Hero from '../components/Hero.astro';
+import SectionCome from '../components/sections/SectionCome.astro';
+import SectionLearner from '../components/sections/SectionLearner.astro';
+import SectionPractice from '../components/sections/SectionPractice.astro';
+import SectionProjects from '../components/sections/SectionProjects.astro';
+import SectionNotes from '../components/sections/SectionNotes.astro';
+import SectionOffice from '../components/sections/SectionOffice.astro';
 ---
 
-<Layout title="Close Communications | Calicut">
-  <LogoBadge />
-  <Hero />
+<Layout 
+  title="Close Communications — Branding Practice | Calicut, Kerala"
+  description="Close Communications is a timeless branding practice rooted in observation, learning, conversation, and thoughtful communication. Calicut & Regional Studio."
+>
+  <SectionCome />
+  <SectionLearner />
+  <SectionPractice />
+  <SectionProjects />
+  <SectionNotes />
+  <SectionOffice />
 </Layout>

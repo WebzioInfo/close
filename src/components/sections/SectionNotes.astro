@@ -1,0 +1,82 @@
+---
+// Section 05: Notes — Thoughts, Observations & Conversations
+import { notes } from '../../data/notes';
+---
+
+<section 
+  id="notes" 
+  class="relative py-24 sm:py-32 lg:py-40 px-6 sm:px-10 lg:px-12 border-b border-brand-border/60 bg-brand-surface/30"
+>
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Chapter Header -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-16 border-b border-brand-border/40">
+      <div class="lg:col-span-4 font-mono text-xs text-neutral-400 space-y-1">
+        <span class="block tracking-widest uppercase text-[11px] font-medium text-neutral-400">Chapter 05</span>
+        <h2 class="text-white text-base font-medium font-sans">Notes & Journal</h2>
+      </div>
+
+      <div class="lg:col-span-8 space-y-4">
+        <p class="font-serif italic text-3xl sm:text-4xl lg:text-5xl text-white leading-[1.1]">
+          An evolving journal of essays, observations,<br />
+          and design conversations.
+        </p>
+        <p class="text-sm font-mono text-neutral-400 uppercase tracking-widest">
+          Updated regularly from the Calicut studio and field observations.
+        </p>
+      </div>
+    </div>
+
+    <!-- Editorial Journal Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 pt-16">
+      {notes.map((note) => (
+        <article class="group border border-brand-border/80 bg-brand-black p-8 sm:p-10 rounded-sm flex flex-col justify-between space-y-8 hover:border-neutral-500 transition-colors duration-300">
+          
+          <div class="space-y-6">
+            <!-- Entry Meta -->
+            <div class="flex items-center justify-between font-mono text-xs text-neutral-400 border-b border-brand-border/40 pb-4">
+              <span class="px-2.5 py-0.5 border border-brand-border rounded-xs uppercase tracking-widest text-[10px] text-white">
+                {note.category}
+              </span>
+              <span>{note.date} &bull; {note.readTime}</span>
+            </div>
+
+            <!-- Title & Excerpt -->
+            <h3 class="font-serif italic text-2xl sm:text-3xl text-white group-hover:text-neutral-200 transition-colors leading-tight">
+              <a href={`/notes/${note.slug}`}>{note.title}</a>
+            </h3>
+
+            <p class="font-sans font-light text-neutral-400 text-sm leading-relaxed">
+              {note.excerpt}
+            </p>
+          </div>
+
+          <!-- Tags & Read Button -->
+          <div class="pt-6 border-t border-brand-border/40 flex items-center justify-between font-mono text-xs text-neutral-400">
+            <div class="flex items-center space-x-2">
+              {note.tags.map((tag) => (
+                <span class="text-[10px] text-neutral-400">#{tag}</span>
+              ))}
+            </div>
+
+            <a 
+              href={`/notes/${note.slug}`} 
+              class="inline-flex items-center space-x-1.5 text-white hover:text-neutral-300 uppercase tracking-widest text-[11px]"
+            >
+              <span>Read Note</span>
+              <span>→</span>
+            </a>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+    <!-- Note Archive Invitation -->
+    <div class="mt-16 text-center pt-8 border-t border-brand-border/40 font-mono text-xs text-neutral-400">
+      <span>Looking for specific brand observations or archive monographs?</span>
+      <a href="mailto:hello@closecommunications.com" class="text-white hover:underline ml-2">Request complete journal index</a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { notes, type Note } from '../../data/notes';
+
+export function getStaticPaths() {
+  return notes.map(note => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+interface Props {
+  note: Note;
+}
+
+const { note } = Astro.props;
+---
+
+<Layout 
+  title={`${note.title} | Close Communications Notes`}
+  description={note.excerpt}
+>
+  <article class="min-h-screen py-16 sm:py-24 px-6 sm:px-10 lg:px-12 max-w-4xl mx-auto space-y-12">
+    
+    <!-- Top Breadcrumb -->
+    <div class="flex items-center justify-between font-mono text-xs text-neutral-400 border-b border-brand-border/60 pb-6">
+      <a href="/#notes" class="inline-flex items-center space-x-2 text-white hover:text-neutral-300 transition-colors uppercase tracking-widest">
+        <span>← Return to Journal Index</span>
+      </a>
+      <span class="uppercase tracking-widest">{note.category} &bull; {note.readTime}</span>
+    </div>
+
+    <!-- Article Header -->
+    <header class="space-y-6">
+      <div class="flex items-center space-x-4 font-mono text-xs text-neutral-400">
+        <span>Published {note.date}</span>
+        <span>&bull;</span>
+        <span>By {note.author}</span>
+      </div>
+
+      <h1 class="font-serif italic text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
+        {note.title}
+      </h1>
+
+      <p class="font-sans text-xl text-neutral-300 font-light leading-relaxed border-l-2 border-white/60 pl-6 py-1">
+        {note.excerpt}
+      </p>
+    </header>
+
+    <!-- Long-form Body Copy -->
+    <div class="space-y-8 font-sans font-light text-neutral-200 text-lg sm:text-xl leading-[1.8] pt-8 border-t border-brand-border/40">
+      {note.content.map((paragraph, idx) => (
+        <p class={idx === 0 ? "first-letter:font-serif first-letter:text-6xl first-letter:float-left first-letter:mr-4 first-letter:text-white first-letter:leading-none" : ""}>
+          {paragraph}
+        </p>
+      ))}
+    </div>
+
+    <!-- Tags & Author Signoff -->
+    <footer class="pt-12 border-t border-brand-border/60 space-y-8 font-mono text-xs">
+      <div class="flex items-center justify-between text-neutral-400">
+        <div class="flex items-center space-x-2">
+          <span>Filed under:</span>
+          {note.tags.map((tag) => (
+            <span class="text-white">#{tag}</span>
+          ))}
+        </div>
+        <span>Calicut &bull; Kerala</span>
+      </div>
+
+      <!-- Dialogue prompt -->
+      <div class="p-6 bg-brand-surface border border-brand-border/80 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h4 class="font-serif italic text-lg text-white">Have thoughts on this note?</h4>
+          <p class="text-neutral-400 text-[11px]">We welcome reflective letters and conversations.</p>
+        </div>
+        <a 
+          href="mailto:hello@closecommunications.com" 
+          class="px-4 py-2 border border-brand-border text-white hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-[10px]"
+        >
+          Send a letter
+        </a>
+      </div>
+    </footer>
+
+  </article>
+</Layout>
