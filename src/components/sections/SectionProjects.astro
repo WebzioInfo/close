@@ -1,114 +1,95 @@
 ---
-// Section 04: Projects — Learning Through Projects
+// Section 04 — Projects
+// Learning through projects. Editorial archive, not a trophy wall.
 import { projects } from '../../data/projects';
 ---
 
 <section 
   id="projects" 
-  class="relative py-24 sm:py-32 lg:py-40 px-6 sm:px-10 lg:px-12 border-b border-brand-border/60 bg-brand-black"
+  class="relative py-28 sm:py-36 lg:py-44 px-6 sm:px-10 lg:px-16 border-b border-brand-border/30 bg-brand-black"
 >
-  <div class="max-w-7xl mx-auto">
+  <div class="max-w-[1400px] mx-auto">
     
-    <!-- Chapter Header -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-16 border-b border-brand-border/40">
-      <div class="lg:col-span-4 font-mono text-xs text-neutral-400 space-y-1">
-        <span class="block tracking-widest uppercase text-[11px] font-medium text-neutral-400">Chapter 04</span>
-        <h2 class="text-white text-base font-medium font-sans">Learning Through Projects</h2>
-      </div>
-
-      <div class="lg:col-span-8 space-y-4">
-        <p class="font-serif italic text-3xl sm:text-4xl lg:text-5xl text-white leading-[1.1]">
-          Projects are not portfolio trophies.<br />
-          They are rigorous learning journeys.
-        </p>
-        <p class="text-sm font-mono text-neutral-400 uppercase tracking-widest">
-          Every case study explores: What was observed &bull; What existed &bull; What changed &bull; What was learned
-        </p>
-      </div>
+    <!-- Section label -->
+    <div class="font-mono text-[10px] text-neutral-500 tracking-widest uppercase mb-6 reveal-on-scroll">
+      04 — Selected Projects
     </div>
 
-    <!-- Projects Exhibition Catalog Grid -->
-    <div class="space-y-24 pt-16">
-      {projects.map((project, index) => (
-        <article class="group border-b border-brand-border/60 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          
-          <!-- Left: Exhibition Metadata & Photography -->
-          <div class="lg:col-span-6 space-y-6">
-            <div class="flex items-center justify-between font-mono text-xs text-neutral-400">
-              <span>Catalog N° 0{index + 1}</span>
-              <span class="uppercase tracking-widest">{project.category} &bull; {project.year}</span>
-            </div>
+    <!-- Section heading -->
+    <div class="mb-20 lg:mb-28 reveal-on-scroll">
+      <h2 class="text-editorial-hero text-white max-w-4xl">
+        Learning through projects.
+      </h2>
+      <p class="font-sans font-light text-neutral-400 text-sm sm:text-base mt-6 max-w-lg">
+        Each project below represents a period of learning. Not a trophy — a conversation that changed how I see branding.
+      </p>
+    </div>
 
-            <!-- Image Container -->
-            <a href={`/projects/${project.slug}`} class="block overflow-hidden border border-brand-border/80 rounded-sm">
+    <!-- Project archive — Editorial asymmetric layout -->
+    <div class="space-y-0">
+      {projects.map((project, i) => (
+        <a 
+          href={`/projects/${project.slug}`}
+          class={`
+            group block grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 
+            py-12 sm:py-16 lg:py-20 
+            border-t border-brand-border/40 
+            ${i === projects.length - 1 ? 'border-b' : ''} 
+            hover:bg-brand-surface/30 transition-all duration-300 
+            -mx-6 sm:-mx-10 lg:-mx-16 px-6 sm:px-10 lg:px-16
+            reveal-on-scroll
+          `}
+        >
+          <!-- Image -->
+          <div class={`lg:col-span-5 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+            <div class="relative aspect-[16/10] overflow-hidden bg-brand-surface border border-brand-border/30">
               <img 
                 src={project.image} 
                 alt={project.title}
-                class="w-full aspect-[16/10] object-cover grayscale contrast-110 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
+                class="w-full h-full object-cover img-monochrome group-hover:scale-[1.04] transition-transform duration-700"
                 loading="lazy"
               />
-            </a>
+            </div>
+          </div>
 
-            <div class="font-mono text-xs text-neutral-400 flex flex-wrap gap-2 pt-2">
-              {project.deliverables.map((d) => (
-                <span class="px-2.5 py-1 bg-brand-surface border border-brand-border/60 rounded-xs">
-                  {d}
-                </span>
+          <!-- Content -->
+          <div class={`lg:col-span-7 flex flex-col justify-center ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+            
+            <!-- Meta row -->
+            <div class="flex items-center gap-4 mb-4">
+              <span class="font-mono text-[11px] text-neutral-500 tracking-wider">No. {String(i + 1).padStart(2, '0')}</span>
+              <span class="w-6 h-px bg-neutral-600"></span>
+              <span class="font-mono text-[11px] text-neutral-500 tracking-wider">{project.category}</span>
+              <span class="font-mono text-[11px] text-neutral-600 tracking-wider ml-auto">{project.year}</span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white font-medium tracking-tight mb-4 group-hover:text-neutral-200 transition-colors">
+              {project.title}
+            </h3>
+
+            <!-- Subtitle -->
+            <p class="font-sans font-light text-neutral-400 text-sm sm:text-base leading-relaxed max-w-xl mb-6">
+              {project.subtitle}
+            </p>
+
+            <!-- Deliverables -->
+            <div class="flex flex-wrap gap-x-4 gap-y-1">
+              {project.deliverables.slice(0, 3).map(d => (
+                <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">{d}</span>
               ))}
             </div>
+
+            <!-- Read link -->
+            <div class="mt-6">
+              <span class="inline-flex items-center gap-2 text-[12px] font-mono uppercase tracking-widest text-neutral-500 group-hover:text-white transition-colors duration-200">
+                <span>Read study</span>
+                <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+              </span>
+            </div>
           </div>
-
-          <!-- Right: Four Core Case Questions (Editorial Monograph Layout) -->
-          <div class="lg:col-span-6 space-y-8">
-            <div>
-              <span class="font-mono text-xs uppercase tracking-widest text-neutral-400">{project.client}</span>
-              <h3 class="font-serif italic text-3xl sm:text-4xl text-white mt-1 group-hover:text-neutral-300 transition-colors">
-                <a href={`/projects/${project.slug}`}>{project.title}</a>
-              </h3>
-              <p class="font-sans text-neutral-300 text-base mt-2 font-light">
-                {project.subtitle}
-              </p>
-            </div>
-
-            <!-- The 4 Observation Pillars -->
-            <div class="space-y-6 text-sm font-sans font-light border-t border-brand-border/40 pt-6">
-              <div>
-                <span class="font-mono text-[11px] text-white uppercase tracking-widest block mb-1">01. What Did We Observe?</span>
-                <p class="text-neutral-400 leading-relaxed">{project.observation}</p>
-              </div>
-
-              <div>
-                <span class="font-mono text-[11px] text-white uppercase tracking-widest block mb-1">02. What Problem Existed?</span>
-                <p class="text-neutral-400 leading-relaxed">{project.problem}</p>
-              </div>
-
-              <div>
-                <span class="font-mono text-[11px] text-white uppercase tracking-widest block mb-1">03. What Changed?</span>
-                <p class="text-neutral-400 leading-relaxed">{project.transformation}</p>
-              </div>
-
-              <div>
-                <span class="font-mono text-[11px] text-white uppercase tracking-widest block mb-1">04. What Did We Learn?</span>
-                <p class="text-neutral-300 italic font-serif text-base leading-relaxed">{project.learnings}</p>
-              </div>
-            </div>
-
-            <!-- Deep Dive Monograph Link -->
-            <div class="pt-4">
-              <a 
-                href={`/projects/${project.slug}`}
-                class="inline-flex items-center space-x-2 font-mono text-xs uppercase tracking-widest text-white border-b border-white hover:text-neutral-400 hover:border-neutral-400 transition-colors pb-1"
-              >
-                <span>Read Complete Project Monograph</span>
-                <span>→</span>
-              </a>
-            </div>
-
-          </div>
-
-        </article>
+        </a>
       ))}
     </div>
-
   </div>
 </section>

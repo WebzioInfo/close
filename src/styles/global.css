@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,8 +11,8 @@
 
   html {
     scroll-behavior: smooth;
-    background-color: #080808;
-    color: #F4F4F5;
+    background-color: #050505;
+    color: #e5e5e5;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -20,82 +20,104 @@
   }
 
   body {
-    background-color: #080808;
-    color: #F4F4F5;
+    background-color: #050505;
+    color: #e5e5e5;
     min-height: 100vh;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #FFFFFF;
-    color: #080808;
+    background-color: #ffffff;
+    color: #050505;
   }
 }
 
-/* Custom Scrollbar - Quiet & Subtle */
+/* Scrollbar — Thin Monochrome */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #080808;
+  background: #050505;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #27272A;
-  border-radius: 2px;
+  background: #262626;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #52525B;
+  background: #525252;
 }
 
-/* Editorial Typography Helpers */
-.font-serif {
-  font-family: 'Instrument Serif', Georgia, serif;
+/* ——— Font Stack Classes ——— */
+.font-display {
+  font-family: 'Manrope', system-ui, sans-serif;
 }
-
 .font-sans {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
-
 .font-mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Fluid Heading Typography Clamps */
+/* ——— Fluid Display Typography (Manrope — never italic) ——— */
+.text-monumental {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: clamp(3.2rem, 10vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  font-style: normal;
+}
+
 .text-editorial-hero {
-  font-size: clamp(3rem, 9vw, 9.5rem);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: clamp(2.5rem, 7vw, 7rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .text-editorial-heading {
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: clamp(2rem, 5vw, 4.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .text-editorial-title {
-  font-size: clamp(1.5rem, 3vw, 2.75rem);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: clamp(1.35rem, 2.8vw, 2.5rem);
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+  font-style: normal;
 }
 
-/* Quiet Reveal Effect */
+/* ——— Scroll Reveal ——— */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* View Transition Polish */
+/* ——— Monochrome Image Treatment ——— */
+.img-monochrome {
+  filter: grayscale(100%) contrast(110%) brightness(95%);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-monochrome:hover {
+  filter: grayscale(100%) contrast(120%) brightness(100%);
+}
+
+/* ——— View Transition ——— */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 450ms;
+  animation-duration: 400ms;
 }

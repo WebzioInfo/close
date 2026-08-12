@@ -5,33 +5,36 @@ export default {
     extend: {
       colors: {
         brand: {
-          black: '#080808',
-          surface: '#0F0F0F',
-          border: '#1E1E1E',
-          muted: '#8E8E93',
-          subtle: '#3A3A3C',
-          light: '#F4F4F5',
-          white: '#FFFFFF',
+          black: '#050505',
+          nearblack: '#0c0c0c',
+          surface: '#121212',
+          border: '#222222',
+          muted: '#737373',
+          subtle: '#333333',
+          light: '#e5e5e5',
+          white: '#ffffff',
         }
       },
       fontFamily: {
-        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        display: ['Manrope', 'system-ui', 'sans-serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       letterSpacing: {
         'tightest': '-0.04em',
-        'tighter': '-0.02em',
-        'widest-editorial': '0.25em',
-        'super-wide': '0.35em',
+        'tighter': '-0.025em',
+        'editorial': '0.15em',
+        'wide-editorial': '0.25em',
       },
       lineHeight: {
-        'editorial': '1.7',
-        'tight-heading': '1.05',
+        'display': '0.92',
+        'heading': '1.05',
+        'body': '1.7',
       },
       animation: {
         'fade-in': 'fadeIn 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'fade-up': 'fadeUp 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'slow-pulse': 'slowPulse 4s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -39,12 +42,15 @@ export default {
           '100%': { opacity: '1' },
         },
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        slowPulse: {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '1' },
+        }
       }
     },
   },
   plugins: [],
 }
-

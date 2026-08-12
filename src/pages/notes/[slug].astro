@@ -17,68 +17,68 @@ const { note } = Astro.props;
 ---
 
 <Layout 
-  title={`${note.title} | Close Communications Notes`}
+  title={`${note.title} — Close`}
   description={note.excerpt}
 >
-  <article class="min-h-screen py-16 sm:py-24 px-6 sm:px-10 lg:px-12 max-w-4xl mx-auto space-y-12">
+  <article class="min-h-screen py-16 sm:py-24 px-6 sm:px-10 lg:px-16 max-w-3xl mx-auto space-y-12">
     
-    <!-- Top Breadcrumb -->
-    <div class="flex items-center justify-between font-mono text-xs text-neutral-400 border-b border-brand-border/60 pb-6">
-      <a href="/#notes" class="inline-flex items-center space-x-2 text-white hover:text-neutral-300 transition-colors uppercase tracking-widest">
-        <span>← Return to Journal Index</span>
+    <!-- Breadcrumb -->
+    <div class="flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-neutral-500 border-b border-brand-border/40 pb-6 uppercase tracking-widest">
+      <a href="/#notes" class="inline-flex items-center gap-2 text-white hover:text-neutral-300 transition-colors">
+        <span>&larr; Notes</span>
       </a>
-      <span class="uppercase tracking-widest">{note.category} &bull; {note.readTime}</span>
+      <span>{note.category} &middot; {note.readTime}</span>
     </div>
 
-    <!-- Article Header -->
+    <!-- Header -->
     <header class="space-y-6">
-      <div class="flex items-center space-x-4 font-mono text-xs text-neutral-400">
-        <span>Published {note.date}</span>
-        <span>&bull;</span>
-        <span>By {note.author}</span>
+      <div class="flex items-center gap-3 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+        <span>{note.date}</span>
+        <span>&middot;</span>
+        <span>{note.author}</span>
       </div>
 
-      <h1 class="font-serif italic text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
+      <h1 class="text-editorial-heading text-white">
         {note.title}
       </h1>
 
-      <p class="font-sans text-xl text-neutral-300 font-light leading-relaxed border-l-2 border-white/60 pl-6 py-1">
-        {note.excerpt}
-      </p>
+      <div class="border-l-2 border-brand-border/50 pl-6">
+        <p class="font-sans font-light text-lg text-neutral-300 leading-relaxed">
+          {note.excerpt}
+        </p>
+      </div>
     </header>
 
-    <!-- Long-form Body Copy -->
-    <div class="space-y-8 font-sans font-light text-neutral-200 text-lg sm:text-xl leading-[1.8] pt-8 border-t border-brand-border/40">
-      {note.content.map((paragraph, idx) => (
-        <p class={idx === 0 ? "first-letter:font-serif first-letter:text-6xl first-letter:float-left first-letter:mr-4 first-letter:text-white first-letter:leading-none" : ""}>
-          {paragraph}
-        </p>
+    <!-- Body -->
+    <div class="space-y-6 font-sans font-light text-neutral-200 text-base sm:text-lg leading-[1.8] pt-8 border-t border-brand-border/40">
+      {note.content.map((paragraph) => (
+        <p>{paragraph}</p>
       ))}
     </div>
 
-    <!-- Tags & Author Signoff -->
-    <footer class="pt-12 border-t border-brand-border/60 space-y-8 font-mono text-xs">
-      <div class="flex items-center justify-between text-neutral-400">
-        <div class="flex items-center space-x-2">
+    <!-- Footer -->
+    <footer class="pt-10 border-t border-brand-border/40 space-y-8">
+      <div class="flex items-center justify-between font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+        <div class="flex items-center gap-2">
           <span>Filed under:</span>
           {note.tags.map((tag) => (
-            <span class="text-white">#{tag}</span>
+            <span class="text-neutral-300">{tag}</span>
           ))}
         </div>
-        <span>Calicut &bull; Kerala</span>
+        <span>Calicut</span>
       </div>
 
-      <!-- Dialogue prompt -->
-      <div class="p-6 bg-brand-surface border border-brand-border/80 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <!-- CTA -->
+      <div class="p-6 sm:p-8 bg-brand-nearblack border border-brand-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h4 class="font-serif italic text-lg text-white">Have thoughts on this note?</h4>
-          <p class="text-neutral-400 text-[11px]">We welcome reflective letters and conversations.</p>
+          <h4 class="font-display text-lg text-white font-medium">Have thoughts on this?</h4>
+          <p class="font-sans text-xs text-neutral-400 mt-1">Reflective correspondence is welcome.</p>
         </div>
         <a 
           href="mailto:hello@closecommunications.com" 
-          class="px-4 py-2 border border-brand-border text-white hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-[10px]"
+          class="px-5 py-2.5 border border-brand-border/60 text-white hover:bg-white hover:text-black transition-colors font-mono uppercase tracking-widest text-[10px]"
         >
-          Send a letter
+          Write to us
         </a>
       </div>
     </footer>

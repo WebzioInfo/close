@@ -1,68 +1,58 @@
 ---
-// Footer.astro - Quiet Architectural Studio Footer
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="w-full bg-brand-black border-t border-brand-border/60 text-neutral-400 py-16 lg:py-24">
-  <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+<footer class="w-full border-t border-brand-border/30 bg-brand-black px-6 sm:px-10 lg:px-16 py-14 sm:py-20">
+  <div class="max-w-[1400px] mx-auto">
     
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-brand-border/40">
+    <!-- Top row -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14">
       
-      <!-- Studio Mission & Statement -->
-      <div class="md:col-span-6 lg:col-span-5 space-y-6">
-        <div class="flex items-center space-x-3">
-          <span class="w-2 h-2 rounded-full bg-white"></span>
-          <span class="font-serif italic text-2xl text-white">Close Communications</span>
+      <!-- Wordmark + tagline -->
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-2.5 mb-3">
+          <span class="w-1.5 h-1.5 bg-white"></span>
+          <span class="font-display text-lg font-semibold tracking-tight text-white">Close</span>
         </div>
-        <p class="font-serif italic text-lg lg:text-xl text-neutral-300 leading-relaxed font-light">
-          "Branding begins with observation, learning, conversation and thoughtful communication."
-        </p>
-        <p class="text-xs text-neutral-400 max-w-sm leading-relaxed">
-          A timeless branding practice. Designed as a quiet gallery and editorial home for thoughtful organizations.
+        <p class="font-sans text-xs text-neutral-500 leading-relaxed max-w-xs">
+          A quiet branding practice rooted in observation, learning, and thoughtful communication.
         </p>
       </div>
 
-      <!-- Studio Location & Time -->
-      <div class="md:col-span-3 lg:col-span-3 space-y-4 font-mono text-xs">
-        <h4 class="text-neutral-500 uppercase tracking-widest text-[10px]">Studio Location</h4>
-        <p class="text-neutral-200 leading-relaxed">
-          Silk Street, Beach Road<br />
-          Kozhikode (Calicut) 673001<br />
-          Kerala, India
-        </p>
-        <p class="text-neutral-400 text-[11px] pt-2">
-          Observation Hours:<br />
-          Mon – Fri &bull; 09:00 – 18:00 IST
-        </p>
+      <!-- Navigation -->
+      <div class="lg:col-span-4">
+        <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-4">Navigation</span>
+        <div class="space-y-2">
+          <a href="/#learner" class="block font-sans text-sm text-neutral-400 hover:text-white transition-colors">Learner</a>
+          <a href="/#practice" class="block font-sans text-sm text-neutral-400 hover:text-white transition-colors">Practice</a>
+          <a href="/#projects" class="block font-sans text-sm text-neutral-400 hover:text-white transition-colors">Projects</a>
+          <a href="/#notes" class="block font-sans text-sm text-neutral-400 hover:text-white transition-colors">Notes</a>
+          <a href="/#office" class="block font-sans text-sm text-neutral-400 hover:text-white transition-colors">Office</a>
+        </div>
       </div>
 
-      <!-- Dialogue & Inquiries -->
-      <div class="md:col-span-3 lg:col-span-4 space-y-4 font-mono text-xs">
-        <h4 class="text-neutral-500 uppercase tracking-widest text-[10px]">Begin a Dialogue</h4>
-        <a 
-          href="mailto:hello@closecommunications.com" 
-          class="block font-serif italic text-xl text-white hover:text-neutral-300 transition-colors py-1"
-        >
-          hello@closecommunications.com
-        </a>
-        <p class="text-neutral-400 leading-relaxed text-[11px]">
-          We welcome thoughtful notes, project inquiries, and editorial dialogue.
-        </p>
+      <!-- Contact -->
+      <div class="lg:col-span-4">
+        <span class="font-mono text-[10px] text-neutral-500 uppercase tracking-widest block mb-4">Contact</span>
+        <div class="space-y-2">
+          <a href="mailto:hello@closecommunications.com" class="block font-sans text-sm text-neutral-400 hover:text-white transition-colors">hello@closecommunications.com</a>
+          <span class="block font-sans text-xs text-neutral-500">Calicut, Kerala, India</span>
+        </div>
+        <div class="flex items-center gap-4 mt-4">
+          <a href="#" class="font-mono text-[10px] text-neutral-500 hover:text-white transition-colors uppercase tracking-widest">Instagram</a>
+          <a href="#" class="font-mono text-[10px] text-neutral-500 hover:text-white transition-colors uppercase tracking-widest">LinkedIn</a>
+        </div>
       </div>
-
     </div>
 
-    <!-- Bottom Copyright & Quiet Notice -->
-    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-neutral-400 gap-4">
-      <div>
+    <!-- Bottom row -->
+    <div class="border-t border-brand-border/20 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <span class="font-mono text-[10px] text-neutral-600 tracking-wider">
         &copy; {currentYear} Close Communications. All rights reserved.
-      </div>
-      <div class="flex items-center space-x-6">
-        <a href="#come" class="hover:text-white transition-colors">Return to Opening</a>
-        <span>&bull;</span>
-        <span class="text-neutral-400">Quiet Edition 1.0</span>
-      </div>
+      </span>
+      <span class="font-mono text-[10px] text-neutral-600 tracking-wider">
+        Designed with quiet intention.
+      </span>
     </div>
-
   </div>
 </footer>
