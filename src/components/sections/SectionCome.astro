@@ -1,50 +1,78 @@
 ---
 // Section 01 — Opening
-// Concept: Come. Quiet confidence. Curiosity before explanation.
+// WHITE hero. Supporting text top-left, heading bottom-right, whitespace between.
 ---
 
 <section 
   id="come" 
-  class="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-between px-6 sm:px-10 lg:px-16 py-16 sm:py-20 border-b border-brand-border/30 bg-brand-black"
+  class="relative bg-white overflow-hidden"
+  style="min-height: calc(100vh - 5rem);"
 >
-  <!-- Top bar -->
-  <div class="relative z-10 flex items-center justify-between font-mono text-[10px] text-neutral-500 tracking-widest uppercase">
-    <span>Close — Branding Practice</span>
-    <span class="hidden sm:block">Calicut, Kerala</span>
-  </div>
+  <div class="relative px-6 sm:px-10 lg:px-16 flex flex-col justify-between" style="min-height: calc(100vh - 5rem);">
 
-  <!-- Center: Monumental Display -->
-  <div class="relative z-10 max-w-6xl my-auto py-20 lg:py-28 w-full">
-    
-    <h1 class="text-monumental text-white mb-14 max-w-5xl reveal-on-scroll">
-      Come closer.
-    </h1>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end">
-      <div class="lg:col-span-7 space-y-5">
-        <p class="font-display text-xl sm:text-2xl lg:text-3xl text-neutral-200 leading-snug font-medium max-w-2xl tracking-tight reveal-on-scroll">
-          Observe how this practice thinks before it creates.
-        </p>
-        <p class="font-sans font-light text-sm sm:text-base text-neutral-400 leading-relaxed max-w-lg reveal-on-scroll">
-          Close is where observation becomes identity. A quiet studio for branding, strategy, and thoughtful communication.
-        </p>
-      </div>
-
-      <div class="lg:col-span-5 flex lg:justify-end reveal-on-scroll">
-        <a 
-          href="#learner"
-          class="group inline-flex items-center gap-3 text-[12px] font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-200 border-b border-neutral-700 hover:border-white pb-2"
-        >
-          <span>Explore</span>
-          <span class="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
-        </a>
-      </div>
+    <!-- 01 — Supporting text: top-left -->
+    <div class="max-w-[1400px] mx-auto w-full pt-12 sm:pt-16 lg:pt-20 hero-intro">
+      <p class="font-sans text-[13px] text-neutral-500 font-normal leading-relaxed max-w-[260px]">
+        A practice of learning, observing, and looking closer.
+      </p>
     </div>
-  </div>
 
-  <!-- Bottom bar -->
-  <div class="relative z-10 flex items-center justify-between font-mono text-[10px] text-neutral-500 tracking-widest uppercase border-t border-brand-border/20 pt-6">
-    <span>Learning &middot; Observing &middot; Practicing</span>
-    <span class="hidden sm:block">Est. Calicut</span>
+    <!-- 02 — Main heading: bottom-right -->
+    <div class="max-w-[1400px] mx-auto w-full pb-12 sm:pb-16 lg:pb-20 hero-statement">
+      <h1 class="font-display font-semibold text-brand-black hero-headline lg:text-right">
+        Learning to look beyond what a brand looks like.
+      </h1>
+    </div>
+
   </div>
 </section>
+
+<style>
+  .hero-headline {
+    font-size: clamp(2.2rem, 5.2vw, 5.8rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-style: normal;
+  }
+
+  .hero-intro {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: heroSettle 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+  }
+
+  .hero-statement {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroSettle 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+  }
+
+  @keyframes heroSettle {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .hero-headline {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .hero-headline {
+      font-size: clamp(1.85rem, 8vw, 2.6rem);
+      line-height: 1.12;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-intro,
+    .hero-statement {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>
