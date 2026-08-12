@@ -1,29 +1,49 @@
 ---
 // Section 01 — Opening
 // WHITE hero. Supporting text top-left, heading bottom-right, whitespace between.
+// Masked Brand Reveal Choreography:
+// 0–1000ms: HOLD. Headline visible; 'brand' is cleanly masked below boundary (0% visible waiting in white hero).
+// 1000ms–1800ms: 'brand' emerges upward out of the clipping boundary into oxblood (#7A263A), while 'looks like.' shifts right simultaneously.
+// 1800ms+: Static hold.
 ---
 
-<section 
-  id="come" 
+<section
+  id="come"
   class="relative bg-white overflow-hidden"
   style="min-height: calc(100vh - 5rem);"
 >
-  <div class="relative px-6 sm:px-10 lg:px-16 flex flex-col justify-between" style="min-height: calc(100vh - 5rem);">
-
+  <div
+    class="relative px-6 sm:px-10 lg:px-16 flex flex-col justify-between"
+    style="min-height: calc(100vh - 5rem);"
+  >
     <!-- 01 — Supporting text: top-left -->
-    <div class="max-w-[1400px] mx-auto w-full pt-12 sm:pt-16 lg:pt-20 hero-intro">
-      <p class="font-sans text-[13px] text-neutral-500 font-normal leading-relaxed max-w-[260px]">
-        A practice of learning, observing, and looking closer.
+    <div
+      class="max-w-[1400px] mx-auto w-full pt-12 sm:pt-16 lg:pt-40 hero-intro"
+    >
+      <p
+        class="font-sans text-[23px] text-neutral-500 font-normal leading-[1.55] max-w-[480px]"
+      >
+        A practice of learning, observing, and looking closer — exploring what
+        makes brands meaningful, memorable, and felt beyond what they look like.
       </p>
     </div>
 
     <!-- 02 — Main heading: bottom-right -->
-    <div class="max-w-[1400px] mx-auto w-full pb-12 sm:pb-16 lg:pb-20 hero-statement">
-      <h1 class="font-display font-semibold text-brand-black hero-headline lg:text-right">
-        Learning to look beyond what a brand looks like.
+    <div
+      class="max-w-[1400px] mx-auto w-full pb-12 sm:pb-16 lg:pb-20 hero-statement"
+    >
+      <h1
+        class="font-display font-semibold text-brand-black hero-headline lg:text-right"
+      >
+        <span class="sm:block">Learning to look beyond what a</span>
+        <span class="sm:block mt-1 sm:mt-0">
+          <span class="brand-mask-container">
+            <span class="brand-word">brand</span>
+          </span>
+          <span class="looks-like-word">looks like.</span>
+        </span>
       </h1>
     </div>
-
   </div>
 </section>
 
@@ -38,19 +58,67 @@
   .hero-intro {
     opacity: 0;
     transform: translateY(12px);
-    animation: heroSettle 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    animation: heroSettle 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
   }
 
   .hero-statement {
     opacity: 0;
     transform: translateY(16px);
-    animation: heroSettle 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+    animation: heroSettle 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
   }
 
   @keyframes heroSettle {
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* ——— Masked Brand Emergence Choreography ——— */
+  .brand-mask-container {
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    line-height: 1.1;
+    margin-bottom: -0.12em;
+    padding-bottom: 0.12em;
+  }
+
+  .brand-word {
+    display: inline-block;
+    vertical-align: baseline;
+    color: #7A263A; /* Muted oxblood accent */
+    /* Hidden behind the mask boundary during 0-1000ms hold */
+    transform: translateY(115%);
+    animation: brandEmerge 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+    will-change: transform;
+  }
+
+  .looks-like-word {
+    display: inline-block;
+    vertical-align: baseline;
+    opacity: 1;
+    margin-left: 0.28em; /* Normal word spacing */
+    transform: translateX(-48px);
+    animation: looksLikeShiftRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+    will-change: transform;
+  }
+
+  @keyframes brandEmerge {
+    0% {
+      transform: translateY(115%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes looksLikeShiftRight {
+    0% {
+      transform: translateX(-48px);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 
@@ -65,13 +133,43 @@
       font-size: clamp(1.85rem, 8vw, 2.6rem);
       line-height: 1.12;
     }
+
+    .brand-word {
+      transform: translateY(115%);
+      animation: brandEmerge 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+    }
+
+    .looks-like-word {
+      margin-left: 0.25em;
+      transform: translateX(-28px);
+      animation: looksLikeShiftRightMobile 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+    }
+  }
+
+  @keyframes looksLikeShiftRightMobile {
+    0% {
+      transform: translateX(-28px);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .hero-intro,
-    .hero-statement {
+    .hero-statement,
+    .looks-like-word {
       opacity: 1;
       transform: none;
+      animation: none;
+    }
+    .brand-mask-container {
+      overflow: visible;
+    }
+    .brand-word {
+      opacity: 1;
+      transform: none;
+      color: #7A263A;
       animation: none;
     }
   }
