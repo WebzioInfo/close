@@ -1,9 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { notes, type Note } from '../../data/notes';
+import Layout from "../../layouts/Layout.astro";
+import { notes, type Note } from "../../data/notes";
 
 export function getStaticPaths() {
-  return notes.map(note => ({
+  return notes.map((note) => ({
     params: { slug: note.slug },
     props: { note },
   }));
@@ -16,15 +16,18 @@ interface Props {
 const { note } = Astro.props;
 ---
 
-<Layout 
-  title={`${note.title} — Close`}
-  description={note.excerpt}
->
-  <article class="min-h-screen py-16 sm:py-24 px-6 sm:px-10 lg:px-16 max-w-3xl mx-auto space-y-12">
-    
+<Layout title={`${note.title} — Close`} description={note.excerpt}>
+  <article
+    class="min-h-screen py-16 sm:py-24 px-6 sm:px-10 lg:px-16 max-w-3xl mx-auto space-y-12"
+  >
     <!-- Breadcrumb -->
-    <div class="flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-neutral-500 border-b border-brand-border/40 pb-6 uppercase tracking-widest">
-      <a href="/#notes" class="inline-flex items-center gap-2 text-white hover:text-neutral-300 transition-colors">
+    <div
+      class="flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-neutral-500 border-b border-brand-border/40 pb-6 uppercase tracking-widest"
+    >
+      <a
+        href="/#notes"
+        class="inline-flex items-center gap-2 text-white hover:text-neutral-300 transition-colors"
+      >
         <span>&larr; Notes</span>
       </a>
       <span>{note.category} &middot; {note.readTime}</span>
@@ -32,7 +35,9 @@ const { note } = Astro.props;
 
     <!-- Header -->
     <header class="space-y-6">
-      <div class="flex items-center gap-3 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+      <div
+        class="flex items-center gap-3 font-mono text-[10px] text-neutral-500 uppercase tracking-widest"
+      >
         <span>{note.date}</span>
         <span>&middot;</span>
         <span>{note.author}</span>
@@ -43,45 +48,52 @@ const { note } = Astro.props;
       </h1>
 
       <div class="border-l-2 border-brand-border/50 pl-6">
-        <p class="font-sans font-light text-lg text-neutral-300 leading-relaxed">
+        <p
+          class="font-sans font-light text-lg text-neutral-300 leading-relaxed"
+        >
           {note.excerpt}
         </p>
       </div>
     </header>
 
     <!-- Body -->
-    <div class="space-y-6 font-sans font-light text-neutral-200 text-base sm:text-lg leading-[1.8] pt-8 border-t border-brand-border/40">
-      {note.content.map((paragraph) => (
-        <p>{paragraph}</p>
-      ))}
+    <div
+      class="space-y-6 font-sans font-light text-neutral-200 text-base sm:text-lg leading-[1.8] pt-8 border-t border-brand-border/40"
+    >
+      {note.content.map((paragraph) => <p>{paragraph}</p>)}
     </div>
 
     <!-- Footer -->
     <footer class="pt-10 border-t border-brand-border/40 space-y-8">
-      <div class="flex items-center justify-between font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+      <div
+        class="flex items-center justify-between font-mono text-[10px] text-neutral-500 uppercase tracking-widest"
+      >
         <div class="flex items-center gap-2">
           <span>Filed under:</span>
-          {note.tags.map((tag) => (
-            <span class="text-neutral-300">{tag}</span>
-          ))}
+          {note.tags.map((tag) => <span class="text-neutral-300">{tag}</span>)}
         </div>
         <span>Calicut</span>
       </div>
 
       <!-- CTA -->
-      <div class="p-6 sm:p-8 bg-brand-nearblack border border-brand-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div
+        class="p-6 sm:p-8 bg-brand-nearblack border border-brand-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      >
         <div>
-          <h4 class="font-display text-lg text-white font-medium">Have thoughts on this?</h4>
-          <p class="font-sans text-xs text-neutral-400 mt-1">Reflective correspondence is welcome.</p>
+          <h4 class="font-display text-lg text-white font-medium">
+            Have thoughts on this?
+          </h4>
+          <p class="font-sans text-xs text-neutral-400 mt-1">
+            Reflective correspondence is welcome.
+          </p>
         </div>
-        <a 
-          href="mailto:hello@closecommunications.com" 
+        <a
+          href="mailto:hello@closecommunications.com"
           class="px-5 py-2.5 border border-brand-border/60 text-white hover:bg-white hover:text-black transition-colors font-mono uppercase tracking-widest text-[10px]"
         >
           Write to us
         </a>
       </div>
     </footer>
-
   </article>
 </Layout>

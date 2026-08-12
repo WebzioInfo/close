@@ -6,21 +6,21 @@ import { projects } from '../../data/projects';
 
 <section 
   id="projects" 
-  class="relative py-28 sm:py-36 lg:py-44 px-6 sm:px-10 lg:px-16 border-b border-brand-border/30 bg-brand-black"
+  class="relative min-h-[100svh] w-full py-14 sm:py-16 lg:py-20 px-6 sm:px-10 lg:px-16 border-b border-brand-border/30 bg-brand-black flex flex-col justify-center overflow-hidden"
 >
-  <div class="max-w-[1400px] mx-auto">
+  <div class="max-w-[1400px] mx-auto w-full my-auto">
     
     <!-- Section label -->
-    <div class="font-mono text-[10px] text-neutral-500 tracking-widest uppercase mb-6 reveal-on-scroll">
+    <div class="font-mono text-[10px] text-neutral-500 tracking-widest uppercase mb-4 sm:mb-6 reveal-on-scroll">
       04 — Selected Projects
     </div>
 
     <!-- Section heading -->
-    <div class="mb-20 lg:mb-28 reveal-on-scroll">
+    <div class="mb-10 sm:mb-14 lg:mb-16 reveal-on-scroll">
       <h2 class="text-editorial-hero text-white max-w-4xl">
         Learning through projects.
       </h2>
-      <p class="font-sans font-light text-neutral-400 text-sm sm:text-base mt-6 max-w-lg">
+      <p class="font-sans font-light text-neutral-400 text-xs sm:text-sm mt-3 max-w-lg">
         Each project below represents a period of learning. Not a trophy — a conversation that changed how I see branding.
       </p>
     </div>
@@ -31,8 +31,8 @@ import { projects } from '../../data/projects';
         <a 
           href={`/projects/${project.slug}`}
           class={`
-            group block grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 
-            py-12 sm:py-16 lg:py-20 
+            group block grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 
+            py-6 sm:py-8 lg:py-10 
             border-t border-brand-border/40 
             ${i === projects.length - 1 ? 'border-b' : ''} 
             hover:bg-brand-surface/30 transition-all duration-300 
