@@ -74,21 +74,25 @@
         <div class="service-item">
           <span class="service-name">Brand Development</span>
           <span class="service-descriptor">(Branding, Identity, Websites, Campaigns)</span>
+          <span class="service-accent-line" aria-hidden="true"></span>
         </div>
         <span class="service-separator" aria-hidden="true">&middot;</span>
         <div class="service-item">
           <span class="service-name">Business Design</span>
-          <span class="service-descriptor service-descriptor-empty" aria-hidden="true">&nbsp;</span>
+          <span class="service-descriptor">(Strategy, Systems, Operations, Growth)</span>
+          <span class="service-accent-line" aria-hidden="true"></span>
         </div>
         <span class="service-separator" aria-hidden="true">&middot;</span>
         <div class="service-item">
           <span class="service-name">Creative Direction</span>
-          <span class="service-descriptor service-descriptor-empty" aria-hidden="true">&nbsp;</span>
+          <span class="service-descriptor">(Vision, Storytelling, Art Direction)</span>
+          <span class="service-accent-line" aria-hidden="true"></span>
         </div>
         <span class="service-separator" aria-hidden="true">&middot;</span>
         <div class="service-item">
           <span class="service-name">Brainstormings</span>
-          <span class="service-descriptor service-descriptor-empty" aria-hidden="true">&nbsp;</span>
+          <span class="service-descriptor">with Brandlearner</span>
+          <span class="service-accent-line" aria-hidden="true"></span>
         </div>
       </div>
     </div>
@@ -221,6 +225,10 @@
   }
 
   /* ── Services Section (Mobile Stacked / Desktop Aligned Row) ── */
+  .scene-services {
+    pointer-events: none;
+  }
+
   .services-wrapper {
     display: flex;
     flex-direction: column;
@@ -230,6 +238,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    pointer-events: auto;
     will-change: transform, opacity;
   }
   @media (min-width: 820px) {
@@ -253,11 +262,17 @@
     text-align: center;
     width: 100%;
     max-width: 320px;
+    position: relative;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   @media (min-width: 820px) {
     .service-item {
       width: auto;
       max-width: none;
+      padding: 0.4rem 0.75rem;
     }
   }
 
@@ -270,6 +285,8 @@
     color: #ffffff;
     white-space: nowrap;
     line-height: 1.2;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                text-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   @media (min-width: 820px) {
     .service-name {
@@ -288,6 +305,9 @@
     line-height: 1.4;
     text-align: center;
     text-transform: none;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   @media (min-width: 820px) {
     .service-descriptor {
@@ -298,15 +318,18 @@
     }
   }
 
-  .service-descriptor-empty {
-    display: none;
-  }
-  @media (min-width: 820px) {
-    .service-descriptor-empty {
-      display: block;
-      visibility: hidden;
-      user-select: none;
-    }
+  .service-accent-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .service-separator {
@@ -316,10 +339,45 @@
     line-height: 1.2;
     align-self: flex-start;
     user-select: none;
+    margin-top: 0.4rem;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   @media (min-width: 820px) {
     .service-separator {
       display: inline-block;
+    }
+  }
+
+  /* ── Service Hover Micro-Interactions (Desktop / Fine Pointer) ── */
+  @media (hover: hover) and (pointer: fine) {
+    .services-wrapper:hover .service-item {
+      opacity: 0.4;
+      transform: scale(0.98);
+    }
+
+    .services-wrapper:hover .service-separator {
+      opacity: 0.2;
+    }
+
+    .services-wrapper .service-item:hover {
+      opacity: 1 !important;
+      transform: translateY(-2px) scale(1.04);
+      cursor: pointer;
+    }
+
+    .service-item:hover .service-name {
+      color: #ffffff;
+      text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+    }
+
+    .service-item:hover .service-descriptor {
+      color: rgba(255, 255, 255, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .service-item:hover .service-accent-line {
+      width: 75%;
+      opacity: 1;
     }
   }
 
