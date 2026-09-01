@@ -23,6 +23,7 @@ export default {
       animation: {
         'fade-hero': 'fadeHero 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'fade-subtle': 'fadeSubtle 700ms cubic-bezier(0.16, 1, 0.3, 1) 150ms forwards',
+        'fade-stagger': 'fadeSubtle 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'badge-fade': 'badgeFade 500ms cubic-bezier(0.16, 1, 0.3, 1) 100ms forwards',
       },
       keyframes: {

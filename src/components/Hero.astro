@@ -1,23 +1,643 @@
 ---
-// Hero.astro
+// Hero.astro — Cinematic Scroll-Driven Experience
+// Mobile-responsive layout (down to 320px viewport width)
 ---
 
-<main class="relative w-full h-dvh min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
-  <div class="flex flex-col items-center text-center max-w-7xl mx-auto z-10">
-    <!-- Hero Heading Composition -->
-    <h1 
-      class="hero-heading font-extrabold text-white text-center tracking-tight select-none animate-fade-hero"
-      style="font-size: clamp(56px, 11vw, 170px); line-height: 0.9;"
-    >
-      <span class="block tracking-[-0.04em]">CLOSE</span>
-      <span class="block tracking-[-0.04em] mt-1 sm:mt-2 lg:mt-3">IS OPEN.</span>
-    </h1>
+<div class="scroll-drive">
+  <div class="cinema-viewport">
 
-    <!-- Supporting Text -->
-    <div class="mt-8 sm:mt-12 lg:mt-16 flex items-center justify-center animate-fade-subtle opacity-80">
-      <span class="supporting-text text-xs sm:text-sm lg:text-[14px] font-medium text-neutral-400 tracking-[0.35em]">
-        CALICUT &bull; KERALA
-      </span>
+    <!-- Subtle Parallax Depth Lines -->
+    <div class="parallax-grid" aria-hidden="true">
+      <span class="grid-line gl-1"></span>
+      <span class="grid-line gl-2"></span>
+      <span class="grid-line gl-3"></span>
     </div>
+
+    <!-- Scroll hint indicator on initial frame -->
+    <div class="scroll-hint" id="scrollHint">
+      <div class="scroll-hint-line"></div>
+    </div>
+
+    <!-- ─── 1. HERO HEADLINE ─── -->
+    <div class="scene scene-hero" id="sceneHero">
+      <h1
+        class="hero-heading font-extrabold text-white text-center select-none"
+        style="font-size: clamp(38px, 10vw, 160px); line-height: 0.9;"
+      >
+        <span class="hero-line" id="heroLine1">
+          <span class="hero-word">COME.</span>
+        </span>
+        <span class="hero-line hero-line-2" id="heroLine2">
+          <span class="hero-word" id="hwClose">CLOSE</span>
+          <span class="hero-word" id="hwIs">IS</span>
+          <span class="hero-word" id="hwOpen">OPEN.</span>
+        </span>
+      </h1>
+    </div>
+
+    <!-- ─── 2. SUB-LINE ─── -->
+    <div class="scene scene-subline" id="sceneSubline">
+      <p class="subline-text">
+        <span class="word">Our</span>
+        <span class="word">new</span>
+        <span class="word">home</span>
+        <span class="word">isn't</span>
+        <span class="word">—</span>
+        <span class="word">we're</span>
+        <span class="word">doing</span>
+        <span class="word">what</span>
+        <span class="word">we</span>
+        <span class="word">always</span>
+        <span class="word">do,</span>
+        <span class="word">working</span>
+        <span class="word">closely</span>
+        <span class="word">with</span>
+        <span class="word">businesses</span>
+        <span class="word">and</span>
+        <span class="word">agencies.</span>
+        <span class="word">We're</span>
+        <span class="word">open.</span>
+        <span class="word">Let's</span>
+        <span class="word">talk.</span>
+      </p>
+    </div>
+
+    <!-- ─── 3. BRAND BLOCK ─── -->
+    <div class="scene scene-brand" id="sceneBrand">
+      <p class="brand-title" id="brandTitle">CLOSE.</p>
+      <p class="brand-credit" id="brandCredit">A Business Design and Branding Practice by Brandlearner.</p>
+    </div>
+
+    <!-- ─── 4. SERVICES (MOBILE VERTICAL STACK / DESKTOP ALIGNED TWO-TIER GRID) ─── -->
+    <div class="scene scene-services" id="sceneServices">
+      <div class="services-wrapper" id="servicesWrapper">
+        <div class="service-item">
+          <span class="service-name">Brand Development</span>
+          <span class="service-descriptor">(Branding, Identity, Websites, Campaigns)</span>
+        </div>
+        <span class="service-separator" aria-hidden="true">&middot;</span>
+        <div class="service-item">
+          <span class="service-name">Business Design</span>
+          <span class="service-descriptor service-descriptor-empty" aria-hidden="true">&nbsp;</span>
+        </div>
+        <span class="service-separator" aria-hidden="true">&middot;</span>
+        <div class="service-item">
+          <span class="service-name">Creative Direction</span>
+          <span class="service-descriptor service-descriptor-empty" aria-hidden="true">&nbsp;</span>
+        </div>
+        <span class="service-separator" aria-hidden="true">&middot;</span>
+        <div class="service-item">
+          <span class="service-name">Brainstormings</span>
+          <span class="service-descriptor service-descriptor-empty" aria-hidden="true">&nbsp;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 5. CLOSING + DIRECT CONTACT INFO ─── -->
+    <div class="scene scene-closing" id="sceneClosing">
+      <h2 class="closing-title" id="closingTitle">LET'S TALK.</h2>
+      <div class="closing-rule" id="closingRule"></div>
+      <div class="closing-contact" id="closingContact">
+        <a href="tel:+918714448195" class="contact-link contact-phone">+91 871 444 8195</a>
+        <span class="contact-sep" aria-hidden="true">&middot;</span>
+        <a href="mailto:mailtoclose@gmail.com" class="contact-link contact-email">mailtoclose@gmail.com</a>
+      </div>
+    </div>
+
   </div>
-</main>
+</div>
+
+<style>
+  /* ── Continuous Scroll Drive ── */
+  .scroll-drive {
+    position: relative;
+    height: 520vh;
+    width: 100%;
+  }
+
+  /* ── Fixed Cinema Viewport ── */
+  .cinema-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── Background Subtle Lines ── */
+  .parallax-grid {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .grid-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.03);
+    will-change: transform;
+  }
+  .gl-1 { top: 25%; }
+  .gl-2 { top: 50%; }
+  .gl-3 { top: 75%; }
+
+  /* ── Base Scene ── */
+  .scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1rem;
+    will-change: transform, opacity;
+    z-index: 1;
+  }
+  @media (min-width: 640px) {
+    .scene {
+      padding: 0 1.5rem;
+    }
+  }
+
+  .scene-hero { opacity: 1; }
+  .scene-subline,
+  .scene-brand,
+  .scene-services,
+  .scene-closing { opacity: 0; }
+
+  /* ── Hero Styles ── */
+  .hero-line {
+    display: block;
+    will-change: transform;
+  }
+  .hero-line-2 { margin-top: 0.08em; }
+  .hero-word {
+    display: inline-block;
+    will-change: transform;
+    padding: 0 0.06em;
+  }
+
+  /* ── Sub-line Styles ── */
+  .subline-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: clamp(16px, 2.6vw, 28px);
+    line-height: 1.65;
+    color: #ffffff;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .scene-subline .word {
+    display: inline-block;
+    will-change: transform, opacity;
+    opacity: 0;
+    margin: 0 0.12em;
+  }
+
+  /* ── Brand Block Styles ── */
+  .brand-title {
+    font-family: 'Syncopate', 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 9vw, 96px);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    line-height: 1;
+    will-change: transform, opacity;
+  }
+  .brand-credit {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: clamp(13px, 1.8vw, 20px);
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 1.25rem;
+    line-height: 1.5;
+    max-width: 580px;
+    will-change: transform, opacity;
+  }
+
+  /* ── Services Section (Mobile Stacked / Desktop Aligned Row) ── */
+  .services-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.35rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    will-change: transform, opacity;
+  }
+  @media (min-width: 820px) {
+    .services-wrapper {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+  }
+  @media (min-width: 1100px) {
+    .services-wrapper {
+      gap: 1.75rem;
+    }
+  }
+
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+  }
+  @media (min-width: 820px) {
+    .service-item {
+      width: auto;
+      max-width: none;
+    }
+  }
+
+  .service-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(12px, 3.6vw, 17px);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #ffffff;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  @media (min-width: 820px) {
+    .service-name {
+      letter-spacing: 0.16em;
+      font-size: clamp(13px, 1.5vw, 17px);
+    }
+  }
+
+  .service-descriptor {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: clamp(10px, 2.6vw, 13px);
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.35rem;
+    line-height: 1.4;
+    text-align: center;
+    text-transform: none;
+  }
+  @media (min-width: 820px) {
+    .service-descriptor {
+      margin-top: 0.45rem;
+      height: 1.4em;
+      white-space: nowrap;
+      font-size: clamp(10px, 1.1vw, 13px);
+    }
+  }
+
+  .service-descriptor-empty {
+    display: none;
+  }
+  @media (min-width: 820px) {
+    .service-descriptor-empty {
+      display: block;
+      visibility: hidden;
+      user-select: none;
+    }
+  }
+
+  .service-separator {
+    display: none;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 1.1rem;
+    line-height: 1.2;
+    align-self: flex-start;
+    user-select: none;
+  }
+  @media (min-width: 820px) {
+    .service-separator {
+      display: inline-block;
+    }
+  }
+
+  /* ── Closing Section & Mobile-Specific Contact Layout ── */
+  .scene-closing {
+    pointer-events: auto;
+  }
+  .closing-title {
+    font-family: 'Syncopate', 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 9vw, 120px);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: #ffffff;
+    will-change: transform, opacity;
+  }
+  .closing-rule {
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 1.8rem auto 1.8rem auto;
+    will-change: width, opacity;
+  }
+  @media (min-width: 640px) {
+    .closing-rule {
+      margin: 2.2rem auto 2.2rem auto;
+    }
+  }
+
+  .closing-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(12px, 3.8vw, 18px);
+    letter-spacing: 0.08em;
+    will-change: transform, opacity;
+    width: 100%;
+  }
+  @media (min-width: 640px) {
+    .closing-contact {
+      flex-direction: row;
+      gap: 1rem;
+      font-size: clamp(13px, 1.6vw, 18px);
+    }
+  }
+
+  .contact-link {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color 0.25s ease, opacity 0.25s ease;
+    pointer-events: auto;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .contact-link:hover {
+    color: #ffffff;
+    opacity: 1;
+  }
+
+  .contact-sep {
+    display: none;
+    color: rgba(255, 255, 255, 0.3);
+    user-select: none;
+  }
+  @media (min-width: 640px) {
+    .contact-sep {
+      display: inline-block;
+    }
+  }
+
+  /* ── Scroll Hint ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    pointer-events: none;
+  }
+  .scroll-hint-line {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4), transparent);
+    animation: hintPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes hintPulse {
+    0%, 100% { opacity: 0.15; transform: scaleY(0.4); }
+    50%      { opacity: 0.65; transform: scaleY(1); }
+  }
+
+  /* ── Reduced Motion Fallback ── */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-drive { height: auto !important; }
+    .cinema-viewport {
+      position: relative !important;
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5rem;
+      padding: 6rem 1rem;
+    }
+    .scene {
+      position: relative !important;
+      opacity: 1 !important;
+      transform: none !important;
+      inset: auto;
+      padding: 1.5rem 0;
+    }
+    .scene-subline .word,
+    .hero-line, .hero-word,
+    .brand-title, .brand-credit,
+    .services-wrapper,
+    .closing-title, .closing-rule, .closing-contact {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .scroll-hint, .parallax-grid { display: none; }
+  }
+</style>
+
+<script>
+  // ═══════════════════════════════════════════════════════
+  //  FLUID CINEMATIC SCROLL ENGINE
+  //  • C2-continuous Smootherstep easing (zero velocity / zero jerk at boundaries)
+  //  • Time-stabilized weighted lerp damping
+  //  • Generous overlapping enter/exit envelopes
+  // ═══════════════════════════════════════════════════════
+
+  const rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function initScrollEngine() {
+    if (rmq.matches) return;
+
+    const drive       = document.querySelector('.scroll-drive') as HTMLElement | null;
+    const sceneHero   = document.getElementById('sceneHero');
+    const heroLine1   = document.getElementById('heroLine1');
+    const hwClose     = document.getElementById('hwClose');
+    const hwIs        = document.getElementById('hwIs');
+    const hwOpen      = document.getElementById('hwOpen');
+    const sceneSub    = document.getElementById('sceneSubline');
+    const subWords    = document.querySelectorAll('#sceneSubline .word') as NodeListOf<HTMLElement>;
+    const sceneBrand  = document.getElementById('sceneBrand');
+    const brandTitle  = document.getElementById('brandTitle');
+    const brandCredit = document.getElementById('brandCredit');
+    const sceneSvc    = document.getElementById('sceneServices');
+    const sceneCl     = document.getElementById('sceneClosing');
+    const clTitle     = document.getElementById('closingTitle');
+    const clRule      = document.getElementById('closingRule');
+    const clContact   = document.getElementById('closingContact');
+    const hint        = document.getElementById('scrollHint');
+    const gridLines   = document.querySelectorAll('.grid-line') as NodeListOf<HTMLElement>;
+
+    if (!drive || !sceneHero) return;
+
+    let cur  = 0;
+    let tgt  = 0;
+    let busy = false;
+    let lastTime = 0;
+    const DAMP_RATE = 5.2; // Time-constant for buttery weighted damping
+
+    // Math & Continuous Easing Utilities
+    const clamp = (v: number, lo: number, hi: number) => v < lo ? lo : v > hi ? hi : v;
+    const remap = (v: number, a: number, b: number) => clamp((v - a) / (b - a), 0, 1);
+    const lerp  = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    // Smootherstep: 6t^5 - 15t^4 + 10t^3
+    const smooth = (t: number) => {
+      const c = clamp(t, 0, 1);
+      return c * c * c * (c * (c * 6 - 15) + 10);
+    };
+
+    const gridSpeeds = [35, 70, 110];
+
+    function render(p: number) {
+      // ── Parallax Background Lines ──
+      for (let i = 0; i < gridLines.length; i++) {
+        gridLines[i].style.transform = `translate3d(0,${-p * gridSpeeds[i]}px,0)`;
+      }
+
+      // ── Scroll Indicator (Graceful Fade) ──
+      if (hint) {
+        hint.style.opacity = String(lerp(0.6, 0, smooth(remap(p, 0.00, 0.05))));
+      }
+
+      // ──────────────────────────────────────────────────
+      //  1. HERO: [0.00 -> 0.08 HOLD] -> [0.08 -> 0.25 SMOOTH EXIT]
+      // ──────────────────────────────────────────────────
+      const hExit = smooth(remap(p, 0.08, 0.25));
+      const heroOp = 1 - Math.pow(hExit, 2.2);
+      const heroY  = -hExit * 45; // vh
+      const heroSc = lerp(1, 0.72, hExit);
+
+      sceneHero!.style.opacity   = String(heroOp);
+      sceneHero!.style.transform = `translate3d(0,${heroY}vh,0) scale(${heroSc})`;
+
+      heroLine1!.style.transform = `translate3d(0,${-hExit * 18}vh,0)`;
+      const spread = hExit * 15; // vw
+      hwClose!.style.transform = `translate3d(${-spread}vw,${-hExit * 4}vh,0)`;
+      hwIs!.style.transform    = `translate3d(0,${hExit * 6}vh,0)`;
+      hwOpen!.style.transform  = `translate3d(${spread}vw,${-hExit * 4}vh,0)`;
+
+      // ──────────────────────────────────────────────────
+      //  2. SUB-LINE:
+      //     [0.14 -> 0.28 ENTER] -> [0.28 -> 0.40 HOLD] -> [0.40 -> 0.52 EXIT]
+      // ──────────────────────────────────────────────────
+      const slIn  = smooth(remap(p, 0.14, 0.28));
+      const slOut = smooth(remap(p, 0.40, 0.52));
+      const slOp  = slIn * (1 - slOut);
+      const slY   = (1 - slIn) * 40 - slOut * 40;
+
+      sceneSub!.style.opacity   = String(slOp);
+      sceneSub!.style.transform = `translate3d(0,${slY}px,0)`;
+
+      const wc = subWords.length;
+      for (let i = 0; i < wc; i++) {
+        const wordT = smooth(remap(slIn, (i / wc) * 0.45, 0.55 + (i / wc) * 0.45));
+        subWords[i].style.opacity   = String(wordT);
+        subWords[i].style.transform = `translate3d(0,${(1 - wordT) * 12}px,0)`;
+      }
+
+      // ──────────────────────────────────────────────────
+      //  3. BRAND BLOCK:
+      //     [0.44 -> 0.56 ENTER] -> [0.56 -> 0.68 HOLD] -> [0.68 -> 0.78 EXIT]
+      // ──────────────────────────────────────────────────
+      const brIn  = smooth(remap(p, 0.44, 0.56));
+      const brOut = smooth(remap(p, 0.68, 0.78));
+      const brOp  = brIn * (1 - brOut);
+      const brY   = (1 - brIn) * 45 - brOut * 40;
+      const brSc  = lerp(1.12, 1, brIn);
+
+      sceneBrand!.style.opacity   = String(brOp);
+      sceneBrand!.style.transform = `translate3d(0,${brY}px,0)`;
+      brandTitle!.style.transform = `scale(${brSc})`;
+
+      const crIn = smooth(remap(p, 0.48, 0.58));
+      brandCredit!.style.opacity   = String(crIn * (1 - brOut));
+      brandCredit!.style.transform = `translate3d(0,${(1 - crIn) * 12}px,0)`;
+
+      // ──────────────────────────────────────────────────
+      //  4. SERVICES:
+      //     [0.70 -> 0.80 ENTER] -> [0.80 -> 0.90 HOLD] -> [0.90 -> 0.96 EXIT]
+      // ──────────────────────────────────────────────────
+      const svIn  = smooth(remap(p, 0.70, 0.80));
+      const svOut = smooth(remap(p, 0.90, 0.96));
+      const svOp  = svIn * (1 - svOut);
+      const svY   = (1 - svIn) * 40 - svOut * 35;
+
+      sceneSvc!.style.opacity   = String(svOp);
+      sceneSvc!.style.transform = `translate3d(0,${svY}px,0)`;
+
+      // ──────────────────────────────────────────────────
+      //  5. CLOSING & CONTACT:
+      //     [0.92 -> 0.97 ENTER] -> [0.97 -> 1.00 FINAL ANCHOR HOLD]
+      // ──────────────────────────────────────────────────
+      const clIn  = smooth(remap(p, 0.92, 0.97));
+      const clY   = (1 - clIn) * 40;
+      const clSc  = lerp(0.94, 1, clIn);
+
+      sceneCl!.style.opacity   = String(clIn);
+      sceneCl!.style.transform = `translate3d(0,${clY}px,0)`;
+      clTitle!.style.transform = `scale(${clSc})`;
+
+      const ruleW = lerp(0, 100, clIn);
+      clRule!.style.width   = `${ruleW}px`;
+      clRule!.style.opacity = String(clIn * 0.75);
+
+      const ctIn = smooth(remap(p, 0.94, 0.99));
+      clContact!.style.opacity   = String(ctIn);
+      clContact!.style.transform = `translate3d(0,${(1 - ctIn) * 10}px,0)`;
+    }
+
+    function tick(timestamp: number) {
+      if (!lastTime) lastTime = timestamp;
+      const dt = Math.min((timestamp - lastTime) / 1000, 0.1);
+      lastTime = timestamp;
+
+      const max = drive!.offsetHeight - window.innerHeight;
+      if (max <= 0) {
+        requestAnimationFrame(tick);
+        return;
+      }
+
+      tgt = clamp(window.scrollY / max, 0, 1);
+
+      const blend = 1 - Math.exp(-DAMP_RATE * dt);
+      const delta = tgt - cur;
+
+      if (Math.abs(delta) > 0.00003) {
+        cur += delta * blend;
+        render(cur);
+        requestAnimationFrame(tick);
+      } else {
+        cur = tgt;
+        render(cur);
+        busy = false;
+        lastTime = 0;
+      }
+    }
+
+    function wake() {
+      if (!busy) {
+        busy = true;
+        lastTime = 0;
+        requestAnimationFrame(tick);
+      }
+    }
+
+    window.addEventListener('scroll', wake, { passive: true });
+    window.addEventListener('resize', wake, { passive: true });
+
+    render(0);
+  }
+
+  rmq.addEventListener('change', () => window.location.reload());
+  initScrollEngine();
+</script>
