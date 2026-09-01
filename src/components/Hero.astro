@@ -68,32 +68,109 @@
       <p class="brand-credit" id="brandCredit">A Business Design and Branding Practice by Brandlearner.</p>
     </div>
 
-    <!-- ─── 4. SERVICES (MOBILE VERTICAL STACK / DESKTOP ALIGNED TWO-TIER GRID) ─── -->
+    <!-- ─── 4. SERVICES (CINEMATIC TYPOGRAPHIC REVEAL) ─── -->
     <div class="scene scene-services" id="sceneServices">
-      <div class="services-wrapper" id="servicesWrapper">
-        <div class="service-item">
-          <span class="service-name">Brand Development</span>
-          <span class="service-descriptor">(Branding, Identity, Websites, Campaigns)</span>
+      <!-- Understated Interactive Hint (Positioned Above Nav Row) -->
+      <div class="services-hint" id="servicesHint" aria-hidden="true">
+        <span class="services-hint-dot"></span>
+        <span class="services-hint-text">Click for details</span>
+      </div>
+
+      <!-- Interactive Services Nav Row -->
+      <div class="services-wrapper" id="servicesWrapper" role="tablist" aria-label="Services & Disciplines">
+        <!-- 0: Brand Development -->
+        <button
+          type="button"
+          class="service-item"
+          data-service="0"
+          role="tab"
+          aria-selected="false"
+          aria-expanded="false"
+          tabindex="0"
+          aria-label="Brand Development"
+        >
+          <div class="service-inner">
+            <span class="service-name">Brand Development</span>
+            <div class="service-description-popover" aria-hidden="true">
+              <p class="service-description">
+                Indelible visual identities, digital flagships, and cohesive design systems engineered to command enduring market authority.
+              </p>
+            </div>
+          </div>
           <span class="service-accent-line" aria-hidden="true"></span>
-        </div>
+        </button>
+
         <span class="service-separator" aria-hidden="true">&middot;</span>
-        <div class="service-item">
-          <span class="service-name">Business Design</span>
-          <span class="service-descriptor">(Strategy, Systems, Operations, Growth)</span>
+
+        <!-- 1: Business Design -->
+        <button
+          type="button"
+          class="service-item"
+          data-service="1"
+          role="tab"
+          aria-selected="false"
+          aria-expanded="false"
+          tabindex="0"
+          aria-label="Business Design"
+        >
+          <div class="service-inner">
+            <span class="service-name">Business Design</span>
+            <div class="service-description-popover" aria-hidden="true">
+              <p class="service-description">
+                Architecting scalable operating models, go-to-market positioning, and commercial frameworks engineered to convert ambition into measurable enterprise growth. We align core business fundamentals with brand equity to unlock high-margin category leadership.
+              </p>
+            </div>
+          </div>
           <span class="service-accent-line" aria-hidden="true"></span>
-        </div>
+        </button>
+
         <span class="service-separator" aria-hidden="true">&middot;</span>
-        <div class="service-item">
-          <span class="service-name">Creative Direction</span>
-          <span class="service-descriptor">(Vision, Storytelling, Art Direction)</span>
+
+        <!-- 2: Creative Direction -->
+        <button
+          type="button"
+          class="service-item"
+          data-service="2"
+          role="tab"
+          aria-selected="false"
+          aria-expanded="false"
+          tabindex="0"
+          aria-label="Creative Direction"
+        >
+          <div class="service-inner">
+            <span class="service-name">Creative Direction</span>
+            <div class="service-description-popover" aria-hidden="true">
+              <p class="service-description">
+                Provocative art direction and cohesive visual narratives that resonate deeply across cultural landscapes.
+              </p>
+            </div>
+          </div>
           <span class="service-accent-line" aria-hidden="true"></span>
-        </div>
+        </button>
+
         <span class="service-separator" aria-hidden="true">&middot;</span>
-        <div class="service-item">
-          <span class="service-name">Brainstormings</span>
-          <span class="service-descriptor">with Brandlearner</span>
+
+        <!-- 3: Brainstormings -->
+        <button
+          type="button"
+          class="service-item"
+          data-service="3"
+          role="tab"
+          aria-selected="false"
+          aria-expanded="false"
+          tabindex="0"
+          aria-label="Brainstormings"
+        >
+          <div class="service-inner">
+            <span class="service-name">Brainstormings</span>
+            <div class="service-description-popover" aria-hidden="true">
+              <p class="service-description">
+                High-velocity ideation sprints and strategic sparring sessions directly with Brandlearner. Designed to break through institutional stagnation, pressure-test critical commercial assumptions, and unblock complex creative hurdles in days rather than months.
+              </p>
+            </div>
+          </div>
           <span class="service-accent-line" aria-hidden="true"></span>
-        </div>
+        </button>
       </div>
     </div>
 
@@ -224,9 +301,10 @@
     will-change: transform, opacity;
   }
 
-  /* ── Services Section (Mobile Stacked / Desktop Aligned Row) ── */
+  /* ── Services Section & Typographic Reveal ── */
   .scene-services {
     pointer-events: none;
+    background: transparent;
   }
 
   .services-wrapper {
@@ -234,24 +312,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.35rem;
+    gap: 1.75rem;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     pointer-events: auto;
+    position: relative;
+    z-index: 5;
     will-change: transform, opacity;
   }
+
   @media (min-width: 820px) {
     .services-wrapper {
       flex-direction: row;
-      align-items: flex-start;
-      justify-content: center;
+      align-items: center;
+      justify-content: space-between;
       gap: 1.25rem;
-    }
-  }
-  @media (min-width: 1100px) {
-    .services-wrapper {
-      gap: 1.75rem;
     }
   }
 
@@ -259,131 +335,216 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
     width: 100%;
     max-width: 320px;
     position: relative;
-    padding: 0.4rem 0.6rem;
-    border-radius: 4px;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0.6rem 0.5rem;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   @media (min-width: 820px) {
     .service-item {
-      width: auto;
-      max-width: none;
-      padding: 0.4rem 0.75rem;
+      flex: 1 1 0;
+      max-width: 270px;
+      min-width: 0;
     }
   }
 
+  .service-item:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.4);
+    outline-offset: 4px;
+  }
+
+  .service-inner {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Heading: clean resting line, scales on hover */
   .service-name {
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: clamp(12px, 3.6vw, 17px);
+    font-weight: 700;
+    font-size: clamp(14px, 3.6vw, 17px);
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     color: #ffffff;
     white-space: nowrap;
-    line-height: 1.2;
-    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                text-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    line-height: 1.25;
+    transform: scale(1);
+    transform-origin: center center;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.25s ease,
+                text-shadow 0.25s ease;
   }
+
   @media (min-width: 820px) {
     .service-name {
-      letter-spacing: 0.16em;
-      font-size: clamp(13px, 1.5vw, 17px);
+      letter-spacing: 0.14em;
+      font-size: clamp(15px, 1.4vw, 18px);
     }
   }
 
-  .service-descriptor {
+  /* Description Popover: Hidden by default, pops & scales up on hover */
+  .service-description-popover {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.82) translateY(8px);
+    width: max-content;
+    max-width: min(340px, 85vw);
+    min-width: 220px;
+    margin-top: 0.85rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 20;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.3s ease;
+  }
+
+  .service-description {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: clamp(10px, 2.6vw, 13px);
-    letter-spacing: 0.02em;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 0.35rem;
-    line-height: 1.4;
+    font-size: clamp(11px, 1.05vw, 12.5px);
+    line-height: 1.55;
+    letter-spacing: 0.015em;
+    color: rgba(255, 255, 255, 0.9);
     text-align: center;
-    text-transform: none;
-    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  @media (min-width: 820px) {
-    .service-descriptor {
-      margin-top: 0.45rem;
-      height: 1.4em;
-      white-space: nowrap;
-      font-size: clamp(10px, 1.1vw, 13px);
-    }
+    margin: 0;
+    padding: 0.25rem 0.5rem;
   }
 
   .service-accent-line {
     position: absolute;
-    bottom: 0;
+    bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
     width: 0%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
     opacity: 0;
     pointer-events: none;
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .service-separator {
     display: none;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.3);
     font-size: 1.1rem;
-    line-height: 1.2;
-    align-self: flex-start;
+    line-height: 1;
+    align-self: center;
     user-select: none;
-    margin-top: 0.4rem;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   @media (min-width: 820px) {
     .service-separator {
       display: inline-block;
     }
   }
 
-  /* ── Service Hover Micro-Interactions (Desktop / Fine Pointer) ── */
-  @media (hover: hover) and (pointer: fine) {
-    .services-wrapper:hover .service-item {
-      opacity: 0.4;
-      transform: scale(0.98);
-    }
+  /* ── Hover / Focus Active State ── */
+  .service-item.is-active,
+  .service-item:hover,
+  .service-item:focus-visible {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    z-index: 10;
+  }
 
-    .services-wrapper:hover .service-separator {
-      opacity: 0.2;
-    }
+  .service-item.is-active .service-name,
+  .service-item:hover .service-name,
+  .service-item:focus-visible .service-name {
+    transform: scale(1.08);
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.55);
+  }
 
-    .services-wrapper .service-item:hover {
-      opacity: 1 !important;
-      transform: translateY(-2px) scale(1.04);
-      cursor: pointer;
-    }
+  .service-item.is-active .service-description-popover,
+  .service-item:hover .service-description-popover,
+  .service-item:focus-visible .service-description-popover {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1) translateY(0);
+  }
 
-    .service-item:hover .service-name {
-      color: #ffffff;
-      text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
-    }
+  .service-item.is-active .service-accent-line,
+  .service-item:hover .service-accent-line,
+  .service-item:focus-visible .service-accent-line {
+    width: 75%;
+    opacity: 1;
+  }
 
-    .service-item:hover .service-descriptor {
-      color: rgba(255, 255, 255, 0.9);
-      transform: translateY(-1px);
-    }
+  /* ── Moderate Blur & Subtle Dimming on Non-Hovered Items (Labels Remain Faintly Legible) ── */
+  .services-wrapper.has-active .service-item:not(.is-active),
+  .services-wrapper:hover .service-item:not(:hover):not(.is-active) {
+    opacity: 0.28;
+    filter: blur(3.5px);
+    transform: scale(0.98);
+  }
 
-    .service-item:hover .service-accent-line {
-      width: 75%;
-      opacity: 1;
-    }
+  .services-wrapper.has-active .service-separator,
+  .services-wrapper:hover .service-separator {
+    opacity: 0.16;
+    filter: blur(2px);
+  }
+
+  /* ── Understated Interactive Micro-Hint (Positioned Above Row) ── */
+  .services-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 2.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(10px, 0.85vw, 11px);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.32);
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .services-hint-dot {
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  /* Gently fade hint when user is focusing on an active item */
+  .scene-services:has(.services-wrapper.has-active) .services-hint,
+  .scene-services:has(.services-wrapper:hover) .services-hint {
+    opacity: 0;
+    transform: translateY(-4px);
   }
 
   /* ── Closing Section & Mobile-Specific Contact Layout ── */
   .scene-closing {
-    pointer-events: auto;
+    pointer-events: none;
+    z-index: 1;
   }
   .closing-title {
     font-family: 'Syncopate', 'Syne', sans-serif;
@@ -500,18 +661,157 @@
       transform: none !important;
     }
     .scroll-hint, .parallax-grid { display: none; }
+
+    .service-item,
+    .service-inner,
+    .service-name,
+    .service-description-popover,
+    .service-description,
+    .service-accent-line,
+    .service-separator,
+    .services-hint {
+      transition: none !important;
+      transform: none !important;
+      will-change: auto !important;
+      filter: none !important;
+    }
+
+    .service-item.is-active .service-description-popover,
+    .service-item:hover .service-description-popover,
+    .service-item:focus-visible .service-description-popover {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateX(-50%) !important;
+    }
   }
 </style>
 
 <script>
   // ═══════════════════════════════════════════════════════
-  //  FLUID CINEMATIC SCROLL ENGINE
+  //  FLUID CINEMATIC SCROLL ENGINE & HERO NAV INTERACTIONS
   //  • C2-continuous Smootherstep easing (zero velocity / zero jerk at boundaries)
   //  • Time-stabilized weighted lerp damping
-  //  • Generous overlapping enter/exit envelopes
+  //  • Staged popover scale with dynamic will-change cleanup
   // ═══════════════════════════════════════════════════════
 
   const rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function initServicesReveal() {
+    const wrapper = document.getElementById('servicesWrapper');
+    if (!wrapper) return;
+
+    const items = wrapper.querySelectorAll('.service-item') as NodeListOf<HTMLButtonElement>;
+    let activeIndex: number | null = null;
+    let cleanupTimer: number | null = null;
+
+    function applyWillChange(el: HTMLElement | null) {
+      if (el && !rmq.matches) el.style.willChange = 'transform, opacity, filter';
+    }
+
+    function removeWillChange(el: HTMLElement | null) {
+      if (el) el.style.willChange = 'auto';
+    }
+
+    function setActive(index: number | null) {
+      if (activeIndex === index) return;
+      activeIndex = index;
+
+      if (cleanupTimer !== null) {
+        window.clearTimeout(cleanupTimer);
+        cleanupTimer = null;
+      }
+
+      if (index === null) {
+        wrapper!.classList.remove('has-active');
+        items.forEach((it) => {
+          it.classList.remove('is-active');
+          it.setAttribute('aria-selected', 'false');
+          it.setAttribute('aria-expanded', 'false');
+          const popover = it.querySelector('.service-description-popover') as HTMLElement | null;
+          const name = it.querySelector('.service-name') as HTMLElement | null;
+          applyWillChange(it);
+          applyWillChange(popover);
+          applyWillChange(name);
+        });
+
+        // Clean up will-change after return transition (~300ms)
+        cleanupTimer = window.setTimeout(() => {
+          items.forEach((it) => {
+            removeWillChange(it);
+            removeWillChange(it.querySelector('.service-description-popover') as HTMLElement | null);
+            removeWillChange(it.querySelector('.service-name') as HTMLElement | null);
+          });
+          cleanupTimer = null;
+        }, 320);
+      } else {
+        wrapper!.classList.add('has-active');
+        items.forEach((it, i) => {
+          const isCur = i === index;
+          it.classList.toggle('is-active', isCur);
+          it.setAttribute('aria-selected', isCur ? 'true' : 'false');
+          it.setAttribute('aria-expanded', isCur ? 'true' : 'false');
+          const popover = it.querySelector('.service-description-popover') as HTMLElement | null;
+          const name = it.querySelector('.service-name') as HTMLElement | null;
+          applyWillChange(it);
+          applyWillChange(popover);
+          applyWillChange(name);
+        });
+
+        // Clean up will-change after reveal transition (~300ms)
+        cleanupTimer = window.setTimeout(() => {
+          items.forEach((it) => {
+            removeWillChange(it);
+            removeWillChange(it.querySelector('.service-description-popover') as HTMLElement | null);
+            removeWillChange(it.querySelector('.service-name') as HTMLElement | null);
+          });
+          cleanupTimer = null;
+        }, 340);
+      }
+    }
+
+    items.forEach((item, index) => {
+      item.addEventListener('mouseenter', () => setActive(index));
+      item.addEventListener('focus', () => setActive(index));
+
+      // Accessible Keyboard Arrow Navigation
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = (index + 1) % items.length;
+          items[next].focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prev = (index - 1 + items.length) % items.length;
+          items[prev].focus();
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          items[0].focus();
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          items[items.length - 1].focus();
+        }
+      });
+    });
+
+    wrapper.addEventListener('mouseleave', () => setActive(null));
+    wrapper.addEventListener('focusout', (e) => {
+      const related = e.relatedTarget as Node | null;
+      if (!related || !wrapper.contains(related)) {
+        setActive(null);
+      }
+    });
+
+    // Dismiss with ESC key for accessibility
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && activeIndex !== null) {
+        const currentActive = items[activeIndex];
+        setActive(null);
+        if (currentActive && document.activeElement === currentActive) {
+          currentActive.blur();
+        }
+      }
+    });
+  }
 
   function initScrollEngine() {
     if (rmq.matches) return;
@@ -632,6 +932,7 @@
 
       sceneSvc!.style.opacity   = String(svOp);
       sceneSvc!.style.transform = `translate3d(0,${svY}px,0)`;
+      sceneSvc!.style.pointerEvents = svOp > 0.08 ? 'auto' : 'none';
 
       // ──────────────────────────────────────────────────
       //  5. CLOSING & CONTACT:
@@ -643,6 +944,7 @@
 
       sceneCl!.style.opacity   = String(clIn);
       sceneCl!.style.transform = `translate3d(0,${clY}px,0)`;
+      sceneCl!.style.pointerEvents = clIn > 0.08 ? 'auto' : 'none';
       clTitle!.style.transform = `scale(${clSc})`;
 
       const ruleW = lerp(0, 100, clIn);
@@ -697,5 +999,6 @@
   }
 
   rmq.addEventListener('change', () => window.location.reload());
+  initServicesReveal();
   initScrollEngine();
 </script>
