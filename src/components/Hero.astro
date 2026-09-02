@@ -1,6 +1,11 @@
 ---
 // Hero.astro — Cinematic Scroll-Driven Experience
-// Mobile-responsive layout (down to 320px viewport width)
+// Matching the client poster layout:
+// 1. Hero (right-aligned)
+// 2. Services grid (2x2, left-aligned within each cell)
+// 3. brandhing (right-aligned)
+// 4. Contact (left-aligned)
+// 5. Footer (wordmark left, two blocks center-right)
 ---
 
 <div class="scroll-drive">
@@ -18,170 +23,141 @@
       <div class="scroll-hint-line"></div>
     </div>
 
-    <!-- ─── 1. HERO HEADLINE ─── -->
-    <div class="scene scene-hero" id="sceneHero">
-      <h1
-        class="hero-heading font-extrabold text-white text-center select-none"
-        style="font-size: clamp(38px, 10vw, 160px); line-height: 0.9;"
-      >
-        <span class="hero-line" id="heroLine1">
-          <span class="hero-word">COME.</span>
-        </span>
-        <span class="hero-line hero-line-2" id="heroLine2">
-          <span class="hero-word" id="hwClose">CLOSE</span>
-          <span class="hero-word" id="hwIs">IS</span>
-          <span class="hero-word" id="hwOpen">OPEN.</span>
-        </span>
-      </h1>
-    </div>
-
-    <!-- ─── 2. SUB-LINE ─── -->
-    <div class="scene scene-subline" id="sceneSubline">
-      <p class="subline-text">
-        <span class="word">Our</span>
-        <span class="word">new</span>
-        <span class="word">home</span>
-        <span class="word">isn't</span>
-        <span class="word">—</span>
-        <span class="word">we're</span>
-        <span class="word">doing</span>
-        <span class="word">what</span>
-        <span class="word">we</span>
-        <span class="word">always</span>
-        <span class="word">do,</span>
-        <span class="word">working</span>
-        <span class="word">closely</span>
-        <span class="word">with</span>
-        <span class="word">businesses</span>
-        <span class="word">and</span>
-        <span class="word">agencies.</span>
-        <span class="word">We're</span>
-        <span class="word">open.</span>
-        <span class="word">Let's</span>
-        <span class="word">talk.</span>
-      </p>
-    </div>
-
-    <!-- ─── 3. BRAND BLOCK ─── -->
-    <div class="scene scene-brand" id="sceneBrand">
-      <p class="brand-title" id="brandTitle">CLOSE.</p>
-      <p class="brand-credit" id="brandCredit">A Business Design and Branding Practice by Brandlearner.</p>
-    </div>
-
-    <!-- ─── 4. SERVICES (CINEMATIC TYPOGRAPHIC REVEAL) ─── -->
-    <div class="scene scene-services" id="sceneServices">
-      <!-- Understated Interactive Hint (Positioned Above Nav Row) -->
-      <div class="services-hint" id="servicesHint" aria-hidden="true">
-        <span class="services-hint-dot"></span>
-        <span class="services-hint-text">Click for details</span>
-      </div>
-
-      <!-- Interactive Services Nav Row -->
-      <div class="services-wrapper" id="servicesWrapper" role="tablist" aria-label="Services & Disciplines">
-        <!-- 0: Brand Development -->
-        <button
-          type="button"
-          class="service-item"
-          data-service="0"
-          role="tab"
-          aria-selected="false"
-          aria-expanded="false"
-          tabindex="0"
-          aria-label="Brand Development"
-        >
-          <div class="service-inner">
-            <span class="service-name">Brand Development</span>
-            <div class="service-description-popover" aria-hidden="true">
-              <p class="service-description">
-                Indelible visual identities, digital flagships, and cohesive design systems engineered to command enduring market authority.
-              </p>
-            </div>
-          </div>
-          <span class="service-accent-line" aria-hidden="true"></span>
-        </button>
-
-        <span class="service-separator" aria-hidden="true">&middot;</span>
-
-        <!-- 1: Business Design -->
-        <button
-          type="button"
-          class="service-item"
-          data-service="1"
-          role="tab"
-          aria-selected="false"
-          aria-expanded="false"
-          tabindex="0"
-          aria-label="Business Design"
-        >
-          <div class="service-inner">
-            <span class="service-name">Business Design</span>
-            <div class="service-description-popover" aria-hidden="true">
-              <p class="service-description">
-                Architecting scalable operating models, go-to-market positioning, and commercial frameworks engineered to convert ambition into measurable enterprise growth. We align core business fundamentals with brand equity to unlock high-margin category leadership.
-              </p>
-            </div>
-          </div>
-          <span class="service-accent-line" aria-hidden="true"></span>
-        </button>
-
-        <span class="service-separator" aria-hidden="true">&middot;</span>
-
-        <!-- 2: Creative Direction -->
-        <button
-          type="button"
-          class="service-item"
-          data-service="2"
-          role="tab"
-          aria-selected="false"
-          aria-expanded="false"
-          tabindex="0"
-          aria-label="Creative Direction"
-        >
-          <div class="service-inner">
-            <span class="service-name">Creative Direction</span>
-            <div class="service-description-popover" aria-hidden="true">
-              <p class="service-description">
-                Provocative art direction and cohesive visual narratives that resonate deeply across cultural landscapes.
-              </p>
-            </div>
-          </div>
-          <span class="service-accent-line" aria-hidden="true"></span>
-        </button>
-
-        <span class="service-separator" aria-hidden="true">&middot;</span>
-
-        <!-- 3: Brainstormings -->
-        <button
-          type="button"
-          class="service-item"
-          data-service="3"
-          role="tab"
-          aria-selected="false"
-          aria-expanded="false"
-          tabindex="0"
-          aria-label="Brainstormings"
-        >
-          <div class="service-inner">
-            <span class="service-name">Brainstormings</span>
-            <div class="service-description-popover" aria-hidden="true">
-              <p class="service-description">
-                High-velocity ideation sprints and strategic sparring sessions directly with Brandlearner. Designed to break through institutional stagnation, pressure-test critical commercial assumptions, and unblock complex creative hurdles in days rather than months.
-              </p>
-            </div>
-          </div>
-          <span class="service-accent-line" aria-hidden="true"></span>
-        </button>
+    <!-- ─── SECTION 1: HERO (RIGHT-ALIGNED) ─── -->
+    <div class="scene scene-1" id="scene1" aria-label="Hero Section">
+      <div class="scene-container">
+        <div class="hero-content">
+          <h1 class="hero-headline" id="s1Headline">
+            <span class="hero-line">come,</span>
+            <span class="hero-line">Close is open.</span>
+          </h1>
+          <p class="hero-subtext" id="s1Subtext">
+            Our new home being ready here,<br />
+            we're doing what we always love to do,<br />
+            working closely with businesses and agencies.
+          </p>
+        </div>
       </div>
     </div>
 
-    <!-- ─── 5. CLOSING + DIRECT CONTACT INFO ─── -->
-    <div class="scene scene-closing" id="sceneClosing">
-      <h2 class="closing-title" id="closingTitle">LET'S TALK.</h2>
-      <div class="closing-rule" id="closingRule"></div>
-      <div class="closing-contact" id="closingContact">
-        <a href="tel:+918714448195" class="contact-link contact-phone">+91 871 444 8195</a>
-        <span class="contact-sep" aria-hidden="true">&middot;</span>
-        <a href="mailto:mailtoclose@gmail.com" class="contact-link contact-email">mailtoclose@gmail.com</a>
+    <!-- ─── SECTION 2: SERVICES GRID (2x2, LEFT-ALIGNED WITHIN CELLS) ─── -->
+    <div class="scene scene-2" id="scene2" aria-label="Services Section">
+      <div class="scene-container">
+        <div class="services-grid" id="s2Grid" role="region" aria-label="Our Services">
+          
+          <!-- Top-Left: Business Design -->
+          <div class="service-card" tabindex="0">
+            <h2 class="service-title">
+              Business<br />Design.
+            </h2>
+            <p class="service-desc">
+              Designing the flows<br class="hidden sm:inline" />
+              of money and memories
+            </p>
+          </div>
+
+          <!-- Top-Right: Brand Development -->
+          <div class="service-card" tabindex="0">
+            <h2 class="service-title">
+              Brand<br />Development.
+            </h2>
+            <p class="service-desc">
+              Matters what and why.<br class="hidden sm:inline" />
+              learning from people, Thinking for people.
+            </p>
+          </div>
+
+          <!-- Bottom-Left: Creative Direction -->
+          <div class="service-card" tabindex="0">
+            <h2 class="service-title">
+              Creative<br />Direction.
+            </h2>
+            <p class="service-desc">
+              The clarity and creativity,<br class="hidden sm:inline" />
+              connecting logic with magic,
+            </p>
+          </div>
+
+          <!-- Bottom-Right: Brainstorm with Brandlearner -->
+          <div class="service-card" tabindex="0">
+            <h2 class="service-title">
+              Brainstorm<br />with Brandlearner
+            </h2>
+            <p class="service-desc">
+              Time and Thoughts matters.<br class="hidden sm:inline" />
+              Fine Creative and Relative Solutions
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SECTION 3: BRANDHING (RIGHT-ALIGNED) ─── -->
+    <div class="scene scene-3" id="scene3" aria-label="Brandhing Section">
+      <div class="scene-container">
+        <div class="brandhing-content">
+          <h2 class="brandhing-headline" id="s3Headline">
+            brandhing
+          </h2>
+          <div class="brandhing-body" id="s3Body">
+            <p class="brandhing-lead">
+              Brandlearner is learning you.
+            </p>
+            <p class="brandhing-para">
+              Observing people, businesses, cultures, and everyday life to understand how businesses and services find a place in people's minds. A lifelong curiosity about what makes something remembered, trusted, felt, and eventually called a brand.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SECTION 4: CONTACT (LEFT-ALIGNED) ─── -->
+    <div class="scene scene-4" id="scene4" aria-label="Contact Section">
+      <div class="scene-container">
+        <div class="contact-content">
+          <div class="contact-links" id="s4Links">
+            <a href="tel:+918714448195" class="contact-entry" aria-label="Call +91 871 444 8195">
+              +91 871 444 8195
+            </a>
+            <a href="mailto:mailtoclose@gmail.com" class="contact-entry" aria-label="Email mailtoclose@gmail.com">
+              mailtoclose@gmail.com
+            </a>
+          </div>
+          <p class="contact-sub" id="s4Sub">
+            Let's learn about branding,
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SECTION 5: FOOTER (WORDMARK LEFT, TWO BLOCKS CENTER-RIGHT) ─── -->
+    <div class="scene scene-5" id="scene5" aria-label="Footer Section">
+      <div class="scene-container">
+        <footer class="footer-layout">
+          
+          <!-- Left: CLOSE Logo Wordmark -->
+          <div class="footer-brand" id="s5Logo">
+            <span class="close-wordmark">CLOSE</span>
+          </div>
+
+          <!-- Center-Right: Two Italic Text Blocks -->
+          <div class="footer-details" id="s5Blocks">
+            <div class="footer-col">
+              <p class="footer-text">
+                A home for branding practice<br />
+                <span class="footer-highlight">by Brandlearner_</span>
+              </p>
+            </div>
+            <div class="footer-col">
+              <p class="footer-text">
+                Search us in people's minds<br />
+                <span class="footer-dimmed">&copy; Close Communications</span>
+              </p>
+            </div>
+          </div>
+
+        </footer>
       </div>
     </div>
 
@@ -225,395 +201,333 @@
   .gl-2 { top: 50%; }
   .gl-3 { top: 75%; }
 
-  /* ── Base Scene ── */
+  /* ── Standardized Scene Frame (Exact Alignment Margin) ── */
   .scene {
     position: absolute;
     inset: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 0 1rem;
+    padding: 0 1.25rem;
     will-change: transform, opacity;
     z-index: 1;
+    pointer-events: none;
   }
   @media (min-width: 640px) {
     .scene {
-      padding: 0 1.5rem;
+      padding: 0 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .scene {
+      padding: 0 3.5rem;
     }
   }
 
-  .scene-hero { opacity: 1; }
-  .scene-subline,
-  .scene-brand,
-  .scene-services,
-  .scene-closing { opacity: 0; }
+  .scene-container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    position: relative;
+    pointer-events: auto;
+  }
 
-  /* ── Hero Styles ── */
+  /* Initial Scene Opacities */
+  .scene-1 { opacity: 1; pointer-events: auto; }
+  .scene-2,
+  .scene-3,
+  .scene-4,
+  .scene-5 { opacity: 0; pointer-events: none; }
+
+  /* ══════════════════════════════════════════
+     SECTION 1: HERO (RIGHT-ALIGNED)
+     ══════════════════════════════════════════ */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    width: 100%;
+  }
+
+  .hero-headline {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: clamp(38px, 8.5vw, 106px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    will-change: transform, opacity;
+  }
+
   .hero-line {
     display: block;
-    will-change: transform;
-  }
-  .hero-line-2 { margin-top: 0.08em; }
-  .hero-word {
-    display: inline-block;
-    will-change: transform;
-    padding: 0 0.06em;
   }
 
-  /* ── Sub-line Styles ── */
-  .subline-text {
-    font-family: 'Inter', sans-serif;
+  .hero-subtext {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-style: italic;
     font-weight: 400;
-    font-size: clamp(16px, 2.6vw, 28px);
-    line-height: 1.65;
-    color: #ffffff;
-    max-width: 680px;
-    margin: 0 auto;
-  }
-  .scene-subline .word {
-    display: inline-block;
-    will-change: transform, opacity;
-    opacity: 0;
-    margin: 0 0.12em;
-  }
-
-  /* ── Brand Block Styles ── */
-  .brand-title {
-    font-family: 'Syncopate', 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: clamp(40px, 9vw, 96px);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #ffffff;
-    line-height: 1;
-    will-change: transform, opacity;
-  }
-  .brand-credit {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: clamp(13px, 1.8vw, 20px);
-    color: rgba(255, 255, 255, 0.65);
-    margin-top: 1.25rem;
-    line-height: 1.5;
+    font-size: clamp(14px, 1.8vw, 22px);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.92);
+    margin-top: 1.75rem;
     max-width: 580px;
     will-change: transform, opacity;
   }
 
-  /* ── Services Section & Typographic Reveal ── */
-  .scene-services {
-    pointer-events: none;
-    background: transparent;
-  }
-
-  .services-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.75rem;
+  /* ══════════════════════════════════════════
+     SECTION 2: SERVICES GRID (2x2, LEFT-ALIGNED)
+     ══════════════════════════════════════════ */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.2rem 1.75rem;
     width: 100%;
-    max-width: 1200px;
+    max-width: 980px;
     margin: 0 auto;
-    pointer-events: auto;
-    position: relative;
-    z-index: 5;
     will-change: transform, opacity;
   }
 
-  @media (min-width: 820px) {
-    .services-wrapper {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
+  @media (min-width: 540px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3.25rem 3rem;
     }
   }
 
-  .service-item {
+  @media (min-width: 1024px) {
+    .services-grid {
+      gap: 4.25rem 5rem;
+    }
+  }
+
+  .service-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    max-width: 320px;
-    position: relative;
-    padding: 0.6rem 0.5rem;
-    border-radius: 8px;
-    background: transparent;
-    border: none;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
+    align-items: flex-start;
+    text-align: left;
     outline: none;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 8px;
+    padding: 0.5rem 0.25rem;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.25s ease;
   }
 
-  @media (min-width: 820px) {
-    .service-item {
-      flex: 1 1 0;
-      max-width: 270px;
-      min-width: 0;
-    }
+  .service-card:hover,
+  .service-card:focus-visible {
+    transform: translateY(-2px);
   }
 
-  .service-item:focus-visible {
+  .service-card:focus-visible {
     outline: 1px solid rgba(255, 255, 255, 0.4);
     outline-offset: 4px;
   }
 
-  .service-inner {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Heading: clean resting line, scales on hover */
-  .service-name {
-    font-family: 'Inter', sans-serif;
+  .service-title {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 700;
-    font-size: clamp(14px, 3.6vw, 17px);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #ffffff;
-    white-space: nowrap;
-    line-height: 1.25;
-    transform: scale(1);
-    transform-origin: center center;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                color 0.25s ease,
-                text-shadow 0.25s ease;
-  }
-
-  @media (min-width: 820px) {
-    .service-name {
-      letter-spacing: 0.14em;
-      font-size: clamp(15px, 1.4vw, 18px);
-    }
-  }
-
-  /* Description Popover: Hidden by default, pops & scales up on hover */
-  .service-description-popover {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) scale(0.82) translateY(8px);
-    width: max-content;
-    max-width: min(340px, 85vw);
-    min-width: 220px;
-    margin-top: 0.85rem;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: 20;
-    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.3s ease;
-  }
-
-  .service-description {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: clamp(11px, 1.05vw, 12.5px);
-    line-height: 1.55;
-    letter-spacing: 0.015em;
-    color: rgba(255, 255, 255, 0.9);
-    text-align: center;
-    margin: 0;
-    padding: 0.25rem 0.5rem;
-  }
-
-  .service-accent-line {
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
-    opacity: 0;
-    pointer-events: none;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .service-separator {
-    display: none;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 1.1rem;
-    line-height: 1;
-    align-self: center;
-    user-select: none;
-    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  @media (min-width: 820px) {
-    .service-separator {
-      display: inline-block;
-    }
-  }
-
-  /* ── Hover / Focus Active State ── */
-  .service-item.is-active,
-  .service-item:hover,
-  .service-item:focus-visible {
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-    z-index: 10;
-  }
-
-  .service-item.is-active .service-name,
-  .service-item:hover .service-name,
-  .service-item:focus-visible .service-name {
-    transform: scale(1.08);
-    color: #ffffff;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.55);
-  }
-
-  .service-item.is-active .service-description-popover,
-  .service-item:hover .service-description-popover,
-  .service-item:focus-visible .service-description-popover {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%) scale(1) translateY(0);
-  }
-
-  .service-item.is-active .service-accent-line,
-  .service-item:hover .service-accent-line,
-  .service-item:focus-visible .service-accent-line {
-    width: 75%;
-    opacity: 1;
-  }
-
-  /* ── Moderate Blur & Subtle Dimming on Non-Hovered Items (Labels Remain Faintly Legible) ── */
-  .services-wrapper.has-active .service-item:not(.is-active),
-  .services-wrapper:hover .service-item:not(:hover):not(.is-active) {
-    opacity: 0.28;
-    filter: blur(3.5px);
-    transform: scale(0.98);
-  }
-
-  .services-wrapper.has-active .service-separator,
-  .services-wrapper:hover .service-separator {
-    opacity: 0.16;
-    filter: blur(2px);
-  }
-
-  /* ── Understated Interactive Micro-Hint (Positioned Above Row) ── */
-  .services-hint {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    margin-bottom: 2.2rem;
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(10px, 0.85vw, 11px);
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.32);
-    pointer-events: none;
-    user-select: none;
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .services-hint-dot {
-    width: 3.5px;
-    height: 3.5px;
-    border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.35);
-  }
-
-  /* Gently fade hint when user is focusing on an active item */
-  .scene-services:has(.services-wrapper.has-active) .services-hint,
-  .scene-services:has(.services-wrapper:hover) .services-hint {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-
-  /* ── Closing Section & Mobile-Specific Contact Layout ── */
-  .scene-closing {
-    pointer-events: none;
-    z-index: 1;
-  }
-  .closing-title {
-    font-family: 'Syncopate', 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(36px, 9vw, 120px);
-    text-transform: uppercase;
+    font-size: clamp(22px, 3.2vw, 42px);
+    line-height: 1.08;
     letter-spacing: -0.03em;
-    line-height: 0.95;
     color: #ffffff;
-    will-change: transform, opacity;
-  }
-  .closing-rule {
-    width: 60px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.3);
-    margin: 1.8rem auto 1.8rem auto;
-    will-change: width, opacity;
-  }
-  @media (min-width: 640px) {
-    .closing-rule {
-      margin: 2.2rem auto 2.2rem auto;
-    }
+    margin: 0;
   }
 
-  .closing-contact {
+  .service-desc {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(12.5px, 1.25vw, 17px);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.82);
+    margin-top: 0.75rem;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION 3: BRANDHING (RIGHT-ALIGNED)
+     ══════════════════════════════════════════ */
+  .brandhing-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(12px, 3.8vw, 18px);
-    letter-spacing: 0.08em;
-    will-change: transform, opacity;
+    align-items: flex-end;
+    text-align: right;
     width: 100%;
   }
-  @media (min-width: 640px) {
-    .closing-contact {
+
+  .brandhing-headline {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: clamp(44px, 9.5vw, 115px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    text-transform: lowercase;
+    margin: 0 0 1.5rem 0;
+    will-change: transform, opacity;
+  }
+
+  .brandhing-body {
+    max-width: 660px;
+    width: 100%;
+    will-change: transform, opacity;
+  }
+
+  .brandhing-lead {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(14px, 1.5vw, 20px);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .brandhing-para {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(13px, 1.45vw, 18.5px);
+    line-height: 1.62;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION 4: CONTACT (LEFT-ALIGNED)
+     ══════════════════════════════════════════ */
+  .contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    will-change: transform, opacity;
+  }
+
+  .contact-entry {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 4.4vw, 56px);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .contact-entry:hover,
+  .contact-entry:focus-visible {
+    color: rgba(255, 255, 255, 0.75);
+    outline: none;
+  }
+
+  .contact-sub {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(13px, 1.45vw, 19px);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 1.35rem;
+    will-change: transform, opacity;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION 5: FOOTER (WORDMARK + TWO BLOCKS IN BALANCED ROW)
+     ══════════════════════════════════════════ */
+  .footer-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .footer-layout {
       flex-direction: row;
-      gap: 1rem;
-      font-size: clamp(13px, 1.6vw, 18px);
+      align-items: center;
+      justify-content: flex-start;
+      gap: clamp(1.75rem, 3.2vw, 3.5rem);
     }
   }
 
-  .contact-link {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: none;
-    transition: color 0.25s ease, opacity 0.25s ease;
-    pointer-events: auto;
-    white-space: nowrap;
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    will-change: transform, opacity;
+  }
+
+  .close-wordmark {
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ffffff;
     display: inline-block;
   }
-  .contact-link:hover {
-    color: #ffffff;
-    opacity: 1;
+
+  .footer-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    will-change: transform, opacity;
   }
 
-  .contact-sep {
-    display: none;
-    color: rgba(255, 255, 255, 0.3);
-    user-select: none;
-  }
-  @media (min-width: 640px) {
-    .contact-sep {
-      display: inline-block;
+  @media (min-width: 600px) {
+    .footer-details {
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(1.75rem, 3.2vw, 3.5rem);
     }
   }
 
-  /* ── Scroll Hint ── */
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .footer-text {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(12px, 1.15vw, 15px);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+
+  .footer-highlight {
+    color: #ffffff;
+  }
+
+  .footer-dimmed {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* ── Scroll Hint Indicator ── */
   .scroll-hint {
     position: absolute;
     bottom: 2.5rem;
@@ -633,7 +547,7 @@
     50%      { opacity: 0.65; transform: scaleY(1); }
   }
 
-  /* ── Reduced Motion Fallback ── */
+  /* ── Reduced Motion Fallback: Continuous Static Poster Flow ── */
   @media (prefers-reduced-motion: reduce) {
     .scroll-drive { height: auto !important; }
     .cinema-viewport {
@@ -642,8 +556,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5rem;
-      padding: 6rem 1rem;
+      gap: 6rem;
+      padding: 5rem 1rem 4rem 1rem;
     }
     .scene {
       position: relative !important;
@@ -651,191 +565,56 @@
       transform: none !important;
       inset: auto;
       padding: 1.5rem 0;
+      pointer-events: auto !important;
     }
-    .scene-subline .word,
-    .hero-line, .hero-word,
-    .brand-title, .brand-credit,
-    .services-wrapper,
-    .closing-title, .closing-rule, .closing-contact {
+    .hero-headline, .hero-subtext,
+    .services-grid, .brandhing-headline, .brandhing-body,
+    .contact-links, .contact-sub,
+    .footer-brand, .footer-details {
       opacity: 1 !important;
       transform: none !important;
     }
     .scroll-hint, .parallax-grid { display: none; }
-
-    .service-item,
-    .service-inner,
-    .service-name,
-    .service-description-popover,
-    .service-description,
-    .service-accent-line,
-    .service-separator,
-    .services-hint {
-      transition: none !important;
-      transform: none !important;
-      will-change: auto !important;
-      filter: none !important;
-    }
-
-    .service-item.is-active .service-description-popover,
-    .service-item:hover .service-description-popover,
-    .service-item:focus-visible .service-description-popover {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: translateX(-50%) !important;
-    }
   }
 </style>
 
 <script>
   // ═══════════════════════════════════════════════════════
-  //  FLUID CINEMATIC SCROLL ENGINE & HERO NAV INTERACTIONS
-  //  • C2-continuous Smootherstep easing (zero velocity / zero jerk at boundaries)
+  //  FLUID CINEMATIC SCROLL ENGINE
+  //  • C2-continuous Smootherstep easing (zero velocity / zero jerk)
   //  • Time-stabilized weighted lerp damping
-  //  • Staged popover scale with dynamic will-change cleanup
+  //  • Precise 5-scene cinematic sequencing
   // ═══════════════════════════════════════════════════════
 
   const rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  function initServicesReveal() {
-    const wrapper = document.getElementById('servicesWrapper');
-    if (!wrapper) return;
-
-    const items = wrapper.querySelectorAll('.service-item') as NodeListOf<HTMLButtonElement>;
-    let activeIndex: number | null = null;
-    let cleanupTimer: number | null = null;
-
-    function applyWillChange(el: HTMLElement | null) {
-      if (el && !rmq.matches) el.style.willChange = 'transform, opacity, filter';
-    }
-
-    function removeWillChange(el: HTMLElement | null) {
-      if (el) el.style.willChange = 'auto';
-    }
-
-    function setActive(index: number | null) {
-      if (activeIndex === index) return;
-      activeIndex = index;
-
-      if (cleanupTimer !== null) {
-        window.clearTimeout(cleanupTimer);
-        cleanupTimer = null;
-      }
-
-      if (index === null) {
-        wrapper!.classList.remove('has-active');
-        items.forEach((it) => {
-          it.classList.remove('is-active');
-          it.setAttribute('aria-selected', 'false');
-          it.setAttribute('aria-expanded', 'false');
-          const popover = it.querySelector('.service-description-popover') as HTMLElement | null;
-          const name = it.querySelector('.service-name') as HTMLElement | null;
-          applyWillChange(it);
-          applyWillChange(popover);
-          applyWillChange(name);
-        });
-
-        // Clean up will-change after return transition (~300ms)
-        cleanupTimer = window.setTimeout(() => {
-          items.forEach((it) => {
-            removeWillChange(it);
-            removeWillChange(it.querySelector('.service-description-popover') as HTMLElement | null);
-            removeWillChange(it.querySelector('.service-name') as HTMLElement | null);
-          });
-          cleanupTimer = null;
-        }, 320);
-      } else {
-        wrapper!.classList.add('has-active');
-        items.forEach((it, i) => {
-          const isCur = i === index;
-          it.classList.toggle('is-active', isCur);
-          it.setAttribute('aria-selected', isCur ? 'true' : 'false');
-          it.setAttribute('aria-expanded', isCur ? 'true' : 'false');
-          const popover = it.querySelector('.service-description-popover') as HTMLElement | null;
-          const name = it.querySelector('.service-name') as HTMLElement | null;
-          applyWillChange(it);
-          applyWillChange(popover);
-          applyWillChange(name);
-        });
-
-        // Clean up will-change after reveal transition (~300ms)
-        cleanupTimer = window.setTimeout(() => {
-          items.forEach((it) => {
-            removeWillChange(it);
-            removeWillChange(it.querySelector('.service-description-popover') as HTMLElement | null);
-            removeWillChange(it.querySelector('.service-name') as HTMLElement | null);
-          });
-          cleanupTimer = null;
-        }, 340);
-      }
-    }
-
-    items.forEach((item, index) => {
-      item.addEventListener('mouseenter', () => setActive(index));
-      item.addEventListener('focus', () => setActive(index));
-
-      // Accessible Keyboard Arrow Navigation
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-          e.preventDefault();
-          const next = (index + 1) % items.length;
-          items[next].focus();
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-          e.preventDefault();
-          const prev = (index - 1 + items.length) % items.length;
-          items[prev].focus();
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          items[0].focus();
-        } else if (e.key === 'End') {
-          e.preventDefault();
-          items[items.length - 1].focus();
-        }
-      });
-    });
-
-    wrapper.addEventListener('mouseleave', () => setActive(null));
-    wrapper.addEventListener('focusout', (e) => {
-      const related = e.relatedTarget as Node | null;
-      if (!related || !wrapper.contains(related)) {
-        setActive(null);
-      }
-    });
-
-    // Dismiss with ESC key for accessibility
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && activeIndex !== null) {
-        const currentActive = items[activeIndex];
-        setActive(null);
-        if (currentActive && document.activeElement === currentActive) {
-          currentActive.blur();
-        }
-      }
-    });
-  }
 
   function initScrollEngine() {
     if (rmq.matches) return;
 
     const drive       = document.querySelector('.scroll-drive') as HTMLElement | null;
-    const sceneHero   = document.getElementById('sceneHero');
-    const heroLine1   = document.getElementById('heroLine1');
-    const hwClose     = document.getElementById('hwClose');
-    const hwIs        = document.getElementById('hwIs');
-    const hwOpen      = document.getElementById('hwOpen');
-    const sceneSub    = document.getElementById('sceneSubline');
-    const subWords    = document.querySelectorAll('#sceneSubline .word') as NodeListOf<HTMLElement>;
-    const sceneBrand  = document.getElementById('sceneBrand');
-    const brandTitle  = document.getElementById('brandTitle');
-    const brandCredit = document.getElementById('brandCredit');
-    const sceneSvc    = document.getElementById('sceneServices');
-    const sceneCl     = document.getElementById('sceneClosing');
-    const clTitle     = document.getElementById('closingTitle');
-    const clRule      = document.getElementById('closingRule');
-    const clContact   = document.getElementById('closingContact');
+    const scene1      = document.getElementById('scene1');
+    const s1Headline  = document.getElementById('s1Headline');
+    const s1Subtext   = document.getElementById('s1Subtext');
+
+    const scene2      = document.getElementById('scene2');
+    const s2Grid      = document.getElementById('s2Grid');
+
+    const scene3      = document.getElementById('scene3');
+    const s3Headline  = document.getElementById('s3Headline');
+    const s3Body      = document.getElementById('s3Body');
+
+    const scene4      = document.getElementById('scene4');
+    const s4Links     = document.getElementById('s4Links');
+    const s4Sub       = document.getElementById('s4Sub');
+
+    const scene5      = document.getElementById('scene5');
+    const s5Logo      = document.getElementById('s5Logo');
+    const s5Blocks    = document.getElementById('s5Blocks');
+
     const hint        = document.getElementById('scrollHint');
     const gridLines   = document.querySelectorAll('.grid-line') as NodeListOf<HTMLElement>;
 
-    if (!drive || !sceneHero) return;
+    if (!drive || !scene1 || !scene2 || !scene3 || !scene4 || !scene5) return;
 
     let cur  = 0;
     let tgt  = 0;
@@ -862,98 +641,86 @@
         gridLines[i].style.transform = `translate3d(0,${-p * gridSpeeds[i]}px,0)`;
       }
 
-      // ── Scroll Indicator (Graceful Fade) ──
+      // ── Scroll Indicator (Fade on initial scroll) ──
       if (hint) {
         hint.style.opacity = String(lerp(0.6, 0, smooth(remap(p, 0.00, 0.05))));
       }
 
       // ──────────────────────────────────────────────────
-      //  1. HERO: [0.00 -> 0.08 HOLD] -> [0.08 -> 0.25 SMOOTH EXIT]
+      //  1. HERO (RIGHT-ALIGNED):
+      //     [0.00 -> 0.08 HOLD] -> [0.08 -> 0.22 EXIT]
       // ──────────────────────────────────────────────────
-      const hExit = smooth(remap(p, 0.08, 0.25));
-      const heroOp = 1 - Math.pow(hExit, 2.2);
-      const heroY  = -hExit * 45; // vh
-      const heroSc = lerp(1, 0.72, hExit);
+      const s1Exit = smooth(remap(p, 0.08, 0.22));
+      const s1Op   = 1 - Math.pow(s1Exit, 2.0);
+      const s1Y    = -s1Exit * 42; // px
 
-      sceneHero!.style.opacity   = String(heroOp);
-      sceneHero!.style.transform = `translate3d(0,${heroY}vh,0) scale(${heroSc})`;
+      scene1!.style.opacity       = String(s1Op);
+      scene1!.style.transform     = `translate3d(0,${s1Y}px,0)`;
+      scene1!.style.pointerEvents = s1Op > 0.06 ? 'auto' : 'none';
 
-      heroLine1!.style.transform = `translate3d(0,${-hExit * 18}vh,0)`;
-      const spread = hExit * 15; // vw
-      hwClose!.style.transform = `translate3d(${-spread}vw,${-hExit * 4}vh,0)`;
-      hwIs!.style.transform    = `translate3d(0,${hExit * 6}vh,0)`;
-      hwOpen!.style.transform  = `translate3d(${spread}vw,${-hExit * 4}vh,0)`;
+      if (s1Headline) s1Headline.style.transform = `translate3d(0,${-s1Exit * 15}px,0)`;
+      if (s1Subtext)  s1Subtext.style.transform  = `translate3d(0,${-s1Exit * 25}px,0)`;
 
       // ──────────────────────────────────────────────────
-      //  2. SUB-LINE:
-      //     [0.14 -> 0.28 ENTER] -> [0.28 -> 0.40 HOLD] -> [0.40 -> 0.52 EXIT]
+      //  2. SERVICES GRID (2x2, LEFT-ALIGNED IN CELLS):
+      //     [0.15 -> 0.28 ENTER] -> [0.28 -> 0.42 HOLD] -> [0.42 -> 0.54 EXIT]
       // ──────────────────────────────────────────────────
-      const slIn  = smooth(remap(p, 0.14, 0.28));
-      const slOut = smooth(remap(p, 0.40, 0.52));
-      const slOp  = slIn * (1 - slOut);
-      const slY   = (1 - slIn) * 40 - slOut * 40;
+      const s2In   = smooth(remap(p, 0.15, 0.28));
+      const s2Out  = smooth(remap(p, 0.42, 0.54));
+      const s2Op   = s2In * (1 - s2Out);
+      const s2Y    = (1 - s2In) * 36 - s2Out * 36;
 
-      sceneSub!.style.opacity   = String(slOp);
-      sceneSub!.style.transform = `translate3d(0,${slY}px,0)`;
+      scene2!.style.opacity       = String(s2Op);
+      scene2!.style.transform     = `translate3d(0,${s2Y}px,0)`;
+      scene2!.style.pointerEvents = s2Op > 0.06 ? 'auto' : 'none';
 
-      const wc = subWords.length;
-      for (let i = 0; i < wc; i++) {
-        const wordT = smooth(remap(slIn, (i / wc) * 0.45, 0.55 + (i / wc) * 0.45));
-        subWords[i].style.opacity   = String(wordT);
-        subWords[i].style.transform = `translate3d(0,${(1 - wordT) * 12}px,0)`;
-      }
+      if (s2Grid) s2Grid.style.transform = `translate3d(0,${(1 - s2In) * 10}px,0)`;
 
       // ──────────────────────────────────────────────────
-      //  3. BRAND BLOCK:
-      //     [0.44 -> 0.56 ENTER] -> [0.56 -> 0.68 HOLD] -> [0.68 -> 0.78 EXIT]
+      //  3. BRANDHING (RIGHT-ALIGNED):
+      //     [0.46 -> 0.58 ENTER] -> [0.58 -> 0.70 HOLD] -> [0.70 -> 0.80 EXIT]
       // ──────────────────────────────────────────────────
-      const brIn  = smooth(remap(p, 0.44, 0.56));
-      const brOut = smooth(remap(p, 0.68, 0.78));
-      const brOp  = brIn * (1 - brOut);
-      const brY   = (1 - brIn) * 45 - brOut * 40;
-      const brSc  = lerp(1.12, 1, brIn);
+      const s3In   = smooth(remap(p, 0.46, 0.58));
+      const s3Out  = smooth(remap(p, 0.70, 0.80));
+      const s3Op   = s3In * (1 - s3Out);
+      const s3Y    = (1 - s3In) * 36 - s3Out * 36;
 
-      sceneBrand!.style.opacity   = String(brOp);
-      sceneBrand!.style.transform = `translate3d(0,${brY}px,0)`;
-      brandTitle!.style.transform = `scale(${brSc})`;
+      scene3!.style.opacity       = String(s3Op);
+      scene3!.style.transform     = `translate3d(0,${s3Y}px,0)`;
+      scene3!.style.pointerEvents = s3Op > 0.06 ? 'auto' : 'none';
 
-      const crIn = smooth(remap(p, 0.48, 0.58));
-      brandCredit!.style.opacity   = String(crIn * (1 - brOut));
-      brandCredit!.style.transform = `translate3d(0,${(1 - crIn) * 12}px,0)`;
+      if (s3Headline) s3Headline.style.transform = `translate3d(0,${(1 - s3In) * 8}px,0)`;
+      if (s3Body)     s3Body.style.transform     = `translate3d(0,${(1 - s3In) * 16}px,0)`;
 
       // ──────────────────────────────────────────────────
-      //  4. SERVICES:
-      //     [0.70 -> 0.80 ENTER] -> [0.80 -> 0.90 HOLD] -> [0.90 -> 0.96 EXIT]
+      //  4. CONTACT (LEFT-ALIGNED):
+      //     [0.72 -> 0.82 ENTER] -> [0.82 -> 0.90 HOLD] -> [0.90 -> 0.96 EXIT]
       // ──────────────────────────────────────────────────
-      const svIn  = smooth(remap(p, 0.70, 0.80));
-      const svOut = smooth(remap(p, 0.90, 0.96));
-      const svOp  = svIn * (1 - svOut);
-      const svY   = (1 - svIn) * 40 - svOut * 35;
+      const s4In   = smooth(remap(p, 0.72, 0.82));
+      const s4Out  = smooth(remap(p, 0.90, 0.96));
+      const s4Op   = s4In * (1 - s4Out);
+      const s4Y    = (1 - s4In) * 36 - s4Out * 32;
 
-      sceneSvc!.style.opacity   = String(svOp);
-      sceneSvc!.style.transform = `translate3d(0,${svY}px,0)`;
-      sceneSvc!.style.pointerEvents = svOp > 0.08 ? 'auto' : 'none';
+      scene4!.style.opacity       = String(s4Op);
+      scene4!.style.transform     = `translate3d(0,${s4Y}px,0)`;
+      scene4!.style.pointerEvents = s4Op > 0.06 ? 'auto' : 'none';
+
+      if (s4Links) s4Links.style.transform = `translate3d(0,${(1 - s4In) * 8}px,0)`;
+      if (s4Sub)   s4Sub.style.transform   = `translate3d(0,${(1 - s4In) * 16}px,0)`;
 
       // ──────────────────────────────────────────────────
-      //  5. CLOSING & CONTACT:
+      //  5. FOOTER (WORDMARK LEFT, TWO BLOCKS CENTER-RIGHT):
       //     [0.92 -> 0.97 ENTER] -> [0.97 -> 1.00 FINAL ANCHOR HOLD]
       // ──────────────────────────────────────────────────
-      const clIn  = smooth(remap(p, 0.92, 0.97));
-      const clY   = (1 - clIn) * 40;
-      const clSc  = lerp(0.94, 1, clIn);
+      const s5In   = smooth(remap(p, 0.92, 0.97));
+      const s5Y    = (1 - s5In) * 32;
 
-      sceneCl!.style.opacity   = String(clIn);
-      sceneCl!.style.transform = `translate3d(0,${clY}px,0)`;
-      sceneCl!.style.pointerEvents = clIn > 0.08 ? 'auto' : 'none';
-      clTitle!.style.transform = `scale(${clSc})`;
+      scene5!.style.opacity       = String(s5In);
+      scene5!.style.transform     = `translate3d(0,${s5Y}px,0)`;
+      scene5!.style.pointerEvents = s5In > 0.06 ? 'auto' : 'none';
 
-      const ruleW = lerp(0, 100, clIn);
-      clRule!.style.width   = `${ruleW}px`;
-      clRule!.style.opacity = String(clIn * 0.75);
-
-      const ctIn = smooth(remap(p, 0.94, 0.99));
-      clContact!.style.opacity   = String(ctIn);
-      clContact!.style.transform = `translate3d(0,${(1 - ctIn) * 10}px,0)`;
+      if (s5Logo)   s5Logo.style.transform   = `translate3d(0,${(1 - s5In) * 8}px,0)`;
+      if (s5Blocks) s5Blocks.style.transform = `translate3d(0,${(1 - s5In) * 14}px,0)`;
     }
 
     function tick(timestamp: number) {
@@ -999,6 +766,5 @@
   }
 
   rmq.addEventListener('change', () => window.location.reload());
-  initServicesReveal();
   initScrollEngine();
 </script>
