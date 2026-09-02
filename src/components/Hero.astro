@@ -32,7 +32,7 @@
               <span class="hero-word-flip hero-word-come" id="hwCome">come,</span>
             </span>
             <span class="hero-line hero-line-close" id="heroCloseLine">
-              <span class="hero-word-flip hero-word-close" id="hwClose">Close is open.</span>
+              <span class="hero-word-close" id="hwClose">Close is open.</span>
             </span>
           </h1>
           <p class="hero-subtext" id="s1Subtext">
@@ -290,11 +290,15 @@
     display: block;
   }
 
-  .hero-line-come,
-  .hero-line-close {
+  .hero-line-come {
     display: block;
     overflow: visible;
     transform-style: preserve-3d;
+  }
+
+  .hero-line-close {
+    display: block;
+    overflow: visible;
   }
 
   .hero-word-flip {
@@ -312,7 +316,10 @@
   }
 
   .hero-word-close {
-    transform-origin: 75% 0%;
+    display: inline-block;
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 
   .hero-subtext {
@@ -704,16 +711,18 @@
 
       // ──────────────────────────────────────────────────
       //  1. HERO (RIGHT-ALIGNED):
-      //     • Headline lines ("come," & "Close is open."):
+      //     • Headline line 1 ("come,"):
       //       3D flip-to-top effect on scroll-out / flip-down on scroll-in.
       //       Pivoting at the top edge and rotating upward and away (-rotateX).
+      //     • Headline line 2 ("Close is open."):
+      //       Standard non-flip transition (subtle upward slide and fade).
       //     • Sub-line text (italic paragraph):
-      //       Reverted to simpler fade and subtle upward slide (no wipe).
+      //       Simpler fade and subtle upward slide (unchanged).
       //     • Tied to scroll position (scroll-scrubbed), with smooth continuous easing.
       // ──────────────────────────────────────────────────
-      const flip1   = smooth(remap(p, 0.02, 0.14));
-      const flip2   = smooth(remap(p, 0.04, 0.165));
-      const subProg = smooth(remap(p, 0.05, 0.175));
+      const flip1     = smooth(remap(p, 0.02, 0.14));
+      const closeProg = smooth(remap(p, 0.04, 0.165));
+      const subProg   = smooth(remap(p, 0.05, 0.175));
 
       if (hwCome) {
         const rotX1   = -flip1 * 80;
@@ -726,13 +735,11 @@
       }
 
       if (hwClose) {
-        const rotX2   = -flip2 * 80;
-        const transY2 = -flip2 * 26;
-        const transZ2 = -flip2 * 35;
-        const op2     = 1 - Math.pow(flip2, 2.2);
+        const closeOp = 1 - Math.pow(closeProg, 2.0);
+        const closeY  = -closeProg * 26;
 
-        hwClose.style.transform = `perspective(1200px) translate3d(0,${transY2}px,${transZ2}px) rotateX(${rotX2}deg)`;
-        hwClose.style.opacity   = String(Math.max(0, op2));
+        hwClose.style.opacity   = String(Math.max(0, closeOp));
+        hwClose.style.transform = `translate3d(0,${closeY}px,0)`;
       }
 
       if (s1Subtext) {
@@ -743,7 +750,7 @@
         s1Subtext.style.transform = `translate3d(0,${subY}px,0)`;
       }
 
-      const s1Complete = flip2 >= 0.98 && subProg >= 0.98;
+      const s1Complete = closeProg >= 0.98 && subProg >= 0.98;
       scene1!.style.pointerEvents = s1Complete ? 'none' : 'auto';
 
       // ──────────────────────────────────────────────────
