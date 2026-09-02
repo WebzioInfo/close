@@ -98,11 +98,11 @@
       <div class="scene-container">
         <div class="brandhing-content">
           <h2 class="brandhing-headline" id="s3Headline">
-            brandhing
+            "brandhing"
           </h2>
           <div class="brandhing-body" id="s3Body">
             <p class="brandhing-lead">
-              Brandlearner is learning you.
+              Brandlearner is loving and learning you madly.
             </p>
             <p class="brandhing-para">
               Observing people, businesses, cultures, and everyday life to understand how businesses and services find a place in people's minds. A lifelong curiosity about what makes something remembered, trusted, felt, and eventually called a brand.
@@ -170,6 +170,23 @@
     position: relative;
     height: 520vh;
     width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scroll-drive::-webkit-scrollbar {
+    display: none;
+  }
+
+  :global(html),
+  :global(body) {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  :global(html::-webkit-scrollbar),
+  :global(body::-webkit-scrollbar) {
+    display: none;
   }
 
   /* ── Fixed Cinema Viewport ── */
