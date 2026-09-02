@@ -29,16 +29,16 @@
         <div class="hero-content">
           <h1 class="hero-headline" id="s1Headline">
             <span class="hero-line hero-line-come" id="heroComeLine">
-              <span class="hero-word-wipe hero-word-come" id="hwCome">come,</span>
+              <span class="hero-word-flip hero-word-come" id="hwCome">come,</span>
             </span>
             <span class="hero-line hero-line-close" id="heroCloseLine">
-              <span class="hero-word-wipe hero-word-close" id="hwClose">Close is open.</span>
+              <span class="hero-word-flip hero-word-close" id="hwClose">Close is open.</span>
             </span>
           </h1>
           <p class="hero-subtext" id="s1Subtext">
-            <span class="sub-line-wrap"><span class="sub-line-wipe" id="hwSub1">Our new home being ready here,</span></span>
-            <span class="sub-line-wrap"><span class="sub-line-wipe" id="hwSub2">we're doing what we always love to do,</span></span>
-            <span class="sub-line-wrap"><span class="sub-line-wipe" id="hwSub3">working closely with businesses and agencies.</span></span>
+            Our new home being ready here,<br />
+            we're doing what we always love to do,<br />
+            working closely with businesses and agencies.
           </p>
         </div>
       </div>
@@ -280,6 +280,9 @@
     color: #ffffff;
     margin: 0;
     padding: 0;
+    perspective: 1200px;
+    perspective-origin: 75% 20%;
+    transform-style: preserve-3d;
     will-change: transform, opacity;
   }
 
@@ -291,21 +294,25 @@
   .hero-line-close {
     display: block;
     overflow: visible;
+    transform-style: preserve-3d;
   }
 
-  .hero-word-wipe {
+  .hero-word-flip {
     display: inline-block;
-    will-change: transform, clip-path, opacity;
-    -webkit-clip-path: inset(0 0 0% 0);
-    clip-path: inset(0 0 0% 0);
+    will-change: transform, opacity;
+    transform-origin: 75% 0%;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 
   .hero-word-come {
-    transform-origin: 65% 90%;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
+    transform-origin: 75% 0%;
+  }
+
+  .hero-word-close {
+    transform-origin: 75% 0%;
   }
 
   .hero-subtext {
@@ -321,20 +328,6 @@
     will-change: transform, opacity;
     opacity: 1;
     transform: translate3d(0, 0, 0);
-  }
-
-  .sub-line-wrap {
-    display: block;
-    overflow: visible;
-  }
-
-  .sub-line-wipe {
-    display: inline-block;
-    will-change: transform, clip-path, opacity;
-    -webkit-clip-path: inset(0 0 0% 0);
-    clip-path: inset(0 0 0% 0);
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
   }
 
   /* ══════════════════════════════════════════
@@ -625,8 +618,7 @@
       padding: 1.5rem 0;
       pointer-events: auto !important;
     }
-    .hero-headline, .hero-subtext, .hero-word-wipe, .hero-word-come, .hero-word-close,
-    .sub-line-wipe,
+    .hero-headline, .hero-subtext, .hero-word-flip, .hero-word-come, .hero-word-close,
     .services-grid, .brandhing-headline, .brandhing-body,
     .contact-links, .contact-sub,
     .footer-brand, .footer-details {
@@ -658,9 +650,6 @@
     const s1Headline  = document.getElementById('s1Headline');
     const hwCome      = document.getElementById('hwCome');
     const hwClose     = document.getElementById('hwClose');
-    const hwSub1      = document.getElementById('hwSub1');
-    const hwSub2      = document.getElementById('hwSub2');
-    const hwSub3      = document.getElementById('hwSub3');
     const s1Subtext   = document.getElementById('s1Subtext');
 
     const scene2      = document.getElementById('scene2');
@@ -715,63 +704,46 @@
 
       // ──────────────────────────────────────────────────
       //  1. HERO (RIGHT-ALIGNED):
-      //     SCROLL-LINKED CINEMATIC MASK WIPE:
-      //     • Headline lines: "come," & "Close is open."
-      //     • Sub-line rows: hwSub1, hwSub2, hwSub3
-      //     • Scrolling down: wipes OUT (clip bottom moves up 0% -> 100%)
-      //     • Scrolling up: wipes IN (clip bottom moves down 100% -> 0%)
-      //     • Damped/interpolated with continuous Smootherstep easing
+      //     • Headline lines ("come," & "Close is open."):
+      //       3D flip-to-top effect on scroll-out / flip-down on scroll-in.
+      //       Pivoting at the top edge and rotating upward and away (-rotateX).
+      //     • Sub-line text (italic paragraph):
+      //       Reverted to simpler fade and subtle upward slide (no wipe).
+      //     • Tied to scroll position (scroll-scrubbed), with smooth continuous easing.
       // ──────────────────────────────────────────────────
-      const wipe1    = smooth(remap(p, 0.02, 0.13));
-      const wipe2    = smooth(remap(p, 0.035, 0.155));
-      const wipeSub1 = smooth(remap(p, 0.045, 0.165));
-      const wipeSub2 = smooth(remap(p, 0.055, 0.175));
-      const wipeSub3 = smooth(remap(p, 0.065, 0.185));
+      const flip1   = smooth(remap(p, 0.02, 0.14));
+      const flip2   = smooth(remap(p, 0.04, 0.165));
+      const subProg = smooth(remap(p, 0.05, 0.175));
 
       if (hwCome) {
-        const clip1   = wipe1 * 100;
-        const transY1 = -wipe1 * 26;
-        const rotX1   = -wipe1 * 20;
-        const op1     = 1 - Math.pow(wipe1, 3.2);
+        const rotX1   = -flip1 * 80;
+        const transY1 = -flip1 * 26;
+        const transZ1 = -flip1 * 35;
+        const op1     = 1 - Math.pow(flip1, 2.2);
 
-        hwCome.style.webkitClipPath = `inset(0 0 ${clip1}% 0)`;
-        hwCome.style.clipPath       = `inset(0 0 ${clip1}% 0)`;
-        hwCome.style.transform      = `perspective(1200px) translate3d(0,${transY1}px,0) rotateX(${rotX1}deg)`;
-        hwCome.style.opacity        = String(op1);
+        hwCome.style.transform = `perspective(1200px) translate3d(0,${transY1}px,${transZ1}px) rotateX(${rotX1}deg)`;
+        hwCome.style.opacity   = String(Math.max(0, op1));
       }
 
       if (hwClose) {
-        const clip2   = wipe2 * 100;
-        const transY2 = -wipe2 * 26;
-        const op2     = 1 - Math.pow(wipe2, 3.2);
+        const rotX2   = -flip2 * 80;
+        const transY2 = -flip2 * 26;
+        const transZ2 = -flip2 * 35;
+        const op2     = 1 - Math.pow(flip2, 2.2);
 
-        hwClose.style.webkitClipPath = `inset(0 0 ${clip2}% 0)`;
-        hwClose.style.clipPath       = `inset(0 0 ${clip2}% 0)`;
-        hwClose.style.transform      = `translate3d(0,${transY2}px,0)`;
-        hwClose.style.opacity        = String(op2);
+        hwClose.style.transform = `perspective(1200px) translate3d(0,${transY2}px,${transZ2}px) rotateX(${rotX2}deg)`;
+        hwClose.style.opacity   = String(Math.max(0, op2));
       }
 
-      const subWipes = [
-        { el: hwSub1, wipe: wipeSub1 },
-        { el: hwSub2, wipe: wipeSub2 },
-        { el: hwSub3, wipe: wipeSub3 },
-      ];
+      if (s1Subtext) {
+        const subOp = 1 - Math.pow(subProg, 2.0);
+        const subY  = -subProg * 28;
 
-      for (let i = 0; i < subWipes.length; i++) {
-        const item = subWipes[i];
-        if (item.el) {
-          const clip = item.wipe * 100;
-          const transY = -item.wipe * 18;
-          const op = 1 - Math.pow(item.wipe, 3.2);
-
-          item.el.style.webkitClipPath = `inset(0 0 ${clip}% 0)`;
-          item.el.style.clipPath       = `inset(0 0 ${clip}% 0)`;
-          item.el.style.transform      = `translate3d(0,${transY}px,0)`;
-          item.el.style.opacity        = String(op);
-        }
+        s1Subtext.style.opacity   = String(Math.max(0, subOp));
+        s1Subtext.style.transform = `translate3d(0,${subY}px,0)`;
       }
 
-      const s1Complete = wipeSub3 >= 0.98;
+      const s1Complete = flip2 >= 0.98 && subProg >= 0.98;
       scene1!.style.pointerEvents = s1Complete ? 'none' : 'auto';
 
       // ──────────────────────────────────────────────────
